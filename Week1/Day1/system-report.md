@@ -61,17 +61,6 @@ The PATH environment variable determines where the system looks for executable c
 📸 **Screenshot:**
 ![PATH Node NPM](images/path-node-npm.png)
 
-**Summary**
-
-* **Operating System:** Linux (64-bit)  
-* **Shell:** Bash  
-* **Node.js Management:** NVM  
-* **Node Binary Location:** Verified  
-* **NPM Global Path:** Verified  
-* **PATH Configuration:** Correctly includes Node and npm
-
-The system environment is properly configured for Node.js development and meets all Day 1 requirements of the Engineering Mindset Bootcamp.
-
 ## **Conclusion**
 
 This exercise helped in understanding how to inspect a Linux system using terminal commands, identify runtime environments, and verify Node.js and npm configurations. These skills are essential for debugging, system setup, and real-world backend engineering work.
