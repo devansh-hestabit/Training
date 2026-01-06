@@ -1,0 +1,21 @@
+{
+  "testFile": {
+    "name": "bigfile.txt",
+    "sizeBytes": 52428800,
+    "sizeMB": 50
+  },
+  "bufferRead": {
+    "method": "fs.readFile",
+    "executionTimeMs": 60.054,
+    "bytesRead": 52428800,
+    "memoryBehavior": "High memory usage (entire file loaded into RAM)",
+    "notes": "Fast for small files but not scalable for large files"
+  },
+  "streamRead": {
+    "method": "fs.createReadStream",
+    "executionTimeMs": 33.811,
+    "bytesRead": 52428800,
+    "memoryBehavior": "Low memory usage (file read in chunks)",
+    "notes": "More memory efficient and suitable for large files"
+  }
+}
