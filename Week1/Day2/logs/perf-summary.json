@@ -1,0 +1,14 @@
+[
+  {
+    "concurrency": 1,
+    "timeMs": 72
+  },
+  {
+    "concurrency": 4,
+    "timeMs": 70
+  },
+  {
+    "concurrency": 8,
+    "timeMs": 78
+  }
+]
