@@ -1,0 +1,28 @@
+{
+  "totalWords": 250000,
+  "uniqueWords": 5,
+  "longestWord": "lorem",
+  "shortestWord": "sit",
+  "topWords": [
+    {
+      "word": "lorem",
+      "count": 50000
+    },
+    {
+      "word": "ipsum",
+      "count": 50000
+    },
+    {
+      "word": "dolor",
+      "count": 50000
+    },
+    {
+      "word": "sit",
+      "count": 50000
+    },
+    {
+      "word": "amet",
+      "count": 50000
+    }
+  ]
+}
