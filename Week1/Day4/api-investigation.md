@@ -9,15 +9,15 @@ The server processes the request and sends back an HTTP response.
 
 Each request contains:
 
-* Method (GET)  
-* URL  
-* Headers
+- Method (GET)
+- URL
+- Headers
 
 Each response contains:
 
-* Status code  
-* Headers  
-* Body (optional)
+- Status code
+- Headers
+- Body (optional)
 
 Using `curl -v`, the complete request and response cycle was observed,  
 including headers and status codes.
@@ -28,12 +28,12 @@ Headers are key-value pairs used to exchange metadata between client and server.
 
 ### **Common headers observed:**
 
-* **Content-Type**: Defines response format (application/json)  
-* **User-Agent**: Identifies the client making the request  
-* **Authorization**: Used for authentication (ignored in this API)  
-* **ETag**: Unique identifier for a specific version of the resource  
-* **Cache-Control**: Defines caching rules  
-* **Access-Control-Allow-Origin**: Enables cross-origin access
+- **Content-Type**: Defines response format (application/json)
+- **User-Agent**: Identifies the client making the request
+- **Authorization**: Used for authentication (ignored in this API)
+- **ETag**: Unique identifier for a specific version of the resource
+- **Cache-Control**: Defines caching rules
+- **Access-Control-Allow-Origin**: Enables cross-origin access
 
 Removing the `User-Agent` header did not affect the response.  
 Sending a fake `Authorization` header was ignored, showing that the endpoint is public.
@@ -42,8 +42,8 @@ Sending a fake `Authorization` header was ignored, showing that the endpoint is 
 
 Pagination was tested using query parameters:
 
-* `limit`: number of items to return  
-* `skip`: number of items to skip
+- `limit`: number of items to return
+- `skip`: number of items to skip
 
 Example:
 
@@ -84,13 +84,12 @@ This demonstrates the difference between browser caching and CDN caching.
 
 A local HTTP server was created using Node.js with the following endpoints:
 
-* `/echo` → returns request headers  
-* `/slow?ms=3000` → delays response  
-* `/cache` → sends cache-related headers
+- `/echo` → returns request headers
+- `/slow?ms=3000` → delays response
+- `/cache` → sends cache-related headers
 
 These endpoints helped in understanding:
 
-* How servers read headers  
-* How response delay works  
-* How cache headers are set
-
+- How servers read headers
+- How response delay works
+- How cache headers are set
