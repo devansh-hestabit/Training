@@ -14,6 +14,9 @@ This repository contains structured training modules organized by week:
 
 Each week contains daily exercises and projects. Navigate to the relevant week folder to find specific learning modules.
 
+## Progress
+Additional weeks and topics will be added as the training progresses.
+
 ```
 Training/
 ├── Week1/
@@ -24,10 +27,14 @@ Training/
 │   └── Day5/ - Project setup and retrospective
 ├── Week2/
 │   ├── Day1/ - HTML and blogging
-│   └── Day2/ - CSS styling
+│   ├── Day2/ - CSS styling
+    ├── Day3/ - JavaScript DOM manipulation
+    ├── Day4/ - Local storage and error handling
+
 └── README.md
 ```
 
-## Progress
 
-Additional weeks will be added as the training progresses.
+
+
+
