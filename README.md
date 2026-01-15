@@ -29,7 +29,9 @@ Training/
 │   ├── Day1/ - HTML and blogging
 │   ├── Day2/ - CSS styling
 │   ├── Day3/ - JavaScript DOM manipulation
-│   └── Day4/ - Local storage and error handling
+│   ├── Day4/ - Local storage and error handling
+│   └── Day5/ - Mini project
+
 └── README.md
 ```
 
