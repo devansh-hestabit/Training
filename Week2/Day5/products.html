@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products - HestaCart</title>
+    <link rel="stylesheet" href="style/products.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">HestaCart</a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="index.html#categories">Categories</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div style="display: flex; align-items: center; gap: 20px">
+          <span class="cart-icon">🛒</span>
+          <button class="mobile-menu" id="mobileMenu">☰</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Controls Section -->
+    <div class="controls">
+      <div class="controls-row">
+        <div class="search-box">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="What are you looking for?"
+          />
+          <span class="search-icon">🔍</span>
+        </div>
+        <div class="filter-group">
+          <label for="sortSelect">Sort by:</label>
+          <select id="sortSelect">
+            <option value="default">Default</option>
+            <option value="high-to-low">Price: High to Low</option>
+            <option value="low-to-high">Price: Low to High</option>
+            <option value="rating-high">Rating: High to Low</option>
+            <option value="name-asc">Name: A to Z</option>
+            <option value="name-desc">Name: Z to A</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Category Pills -->
+      <div class="category-pills" id="categoryPills"></div>
+    </div>
+
+    <!-- Products Container -->
+    <div class="container">
+      <div class="product-count" id="productCount"></div>
+      <div id="productsContainer">
+        <!-- Loading State -->
+        <div class="loading">
+          <div class="spinner"></div>
+          <p>Loading products...</p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="scripts/products.js"></script>
+  </body>
+</html>
