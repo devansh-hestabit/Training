@@ -8,7 +8,7 @@ A progressive learning journey organized by weeks and days.
 This repository contains structured training modules organized by week:
 
 - **Week 1**: Core fundamentals including Node.js streams, performance analysis, API investigation, and project configuration
-- **Week 2**: Web development basics with HTML and CSS
+- **Week 2**: Web development basics with HTML, CSS and JS
 
 ## Getting Started
 
