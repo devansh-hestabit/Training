@@ -31,6 +31,14 @@ Training/
 │   ├── Day3/ - JavaScript DOM manipulation
 │   ├── Day4/ - Local storage and error handling
 │   └── Day5/ - Mini project
+├── Week3/
+│   ├── Day1/ - Introduction to Tailwind CSS
+│   ├── Day2/ - Advanced Tailwind CSS
+│   ├── Day3/ - Next.js Routing + Layout System
+│   ├── Day4/ - Dynamic UI + Image Optimization
+│   └── Day5/ - Mini project
+
+
 
 └── README.md
 ```
