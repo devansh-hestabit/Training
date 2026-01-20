@@ -37,9 +37,6 @@ Training/
 │   ├── Day3/ - Next.js Routing + Layout System
 │   ├── Day4/ - Dynamic UI + Image Optimization
 │   └── Day5/ - Mini project
-
-
-
 └── README.md
 ```
 
