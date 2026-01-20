@@ -1,36 +1,36 @@
 export default function DataTable() {
   const data = [
     {
-      name: "Tiger Nixon",
-      position: "System Architect",
-      office: "Edinburgh",
-      age: 61,
-      startDate: "2011/04/25",
-      salary: "$320,800",
+      name: "Liam O'Connell",
+      position: "Cloud Infrastructure Lead",
+      office: "Dublin",
+      age: 38,
+      startDate: "2016/09/14",
+      salary: "$142,500",
     },
     {
-      name: "Garrett Winters",
-      position: "Accountant",
-      office: "Tokyo",
-      age: 63,
-      startDate: "2011/07/25",
-      salary: "$170,750",
+      name: "Aiko Tanaka",
+      position: "Senior Financial Analyst",
+      office: "Osaka",
+      age: 41,
+      startDate: "2018/02/05",
+      salary: "$118,200",
     },
     {
-      name: "Ashton Cox",
-      position: "Junior Technical Author",
-      office: "San Francisco",
-      age: 66,
-      startDate: "2009/01/12",
-      salary: "$86,000",
+      name: "María González",
+      position: "Technical Documentation Specialist",
+      office: "Madrid",
+      age: 34,
+      startDate: "2020/06/21",
+      salary: "$72,450",
     },
     {
-      name: "Cedric Kelly",
-      position: "Senior Javascript Developer",
-      office: "Edinburgh",
-      age: 22,
-      startDate: "2012/03/29",
-      salary: "$433,060",
+      name: "Ethan Brooks",
+      position: "Frontend Performance Engineer",
+      office: "Austin",
+      age: 29,
+      startDate: "2021/11/03",
+      salary: "$131,900",
     },
   ];
 
@@ -39,10 +39,14 @@ export default function DataTable() {
       <thead>
         <tr className="bg-gray-50 border-b">
           <th className="px-3 py-2 font-medium-semibold text-black">Name</th>
-          <th className="px-3 py-2 font-medium-semibold text-black">Position</th>
+          <th className="px-3 py-2 font-medium-semibold text-black">
+            Position
+          </th>
           <th className="px-3 py-2 font-medium-semibold text-black">Office</th>
           <th className="px-3 py-2 font-medium-semibold text-black">Age</th>
-          <th className="px-3 py-2 font-medium-semibold text-black">Start date</th>
+          <th className="px-3 py-2 font-medium-semibold text-black">
+            Start date
+          </th>
           <th className="px-3 py-2 font-medium-semibold text-black">Salary</th>
         </tr>
       </thead>
