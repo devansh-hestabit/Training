@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 export default function Sidebar({ isOpen }) {
   return (
     <aside
@@ -13,10 +13,13 @@ export default function Sidebar({ isOpen }) {
         <div>
           <p className="text-xs uppercase text-gray-500 mb-3">Core</p>
 
-          <div className="flex items-center gap-3 text-white px-3 py-2 rounded bg-gray-800">
+          <Link
+            href="/dashboard"
+            className="flex items-center gap-3 text-white px-3 py-2 rounded hover:bg-gray-800"
+          >
             <span>📊</span>
             <span>Dashboard</span>
-          </div>
+          </Link>
         </div>
 
         {/* INTERFACE */}
@@ -37,10 +40,18 @@ export default function Sidebar({ isOpen }) {
         </div>
 
         {/* ADDONS */}
+        {/* ADDONS */}
         <div>
           <p className="text-xs uppercase text-gray-500 mb-3">Addons</p>
 
           <div className="space-y-2">
+            <Link
+              href="/dashboard/profile"
+              className="flex px-3 py-2 rounded hover:bg-gray-800 cursor-pointer"
+            >
+              Profile
+            </Link>
+
             <div className="px-3 py-2 rounded hover:bg-gray-800 cursor-pointer">
               Charts
             </div>

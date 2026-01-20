@@ -1,5 +1,7 @@
 "use client";
+
 import Input from "@/components/ui/InputNav";
+import Link from "next/link";
 
 export default function Navbar({ isOpen, onToggleSidebar }) {
   return (
@@ -22,16 +24,30 @@ export default function Navbar({ isOpen, onToggleSidebar }) {
 
       {/* Right side */}
       <div className="flex items-center gap-4">
+        {/* Search */}
         <div className="relative">
           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
             🔍
           </span>
-
           <Input placeholder="Search for..." />
         </div>
 
+        {/* Icons */}
         <span className="cursor-pointer">🔔</span>
-        <span className="cursor-pointer">👤</span>
+        <Link
+          href="/dashboard/profile"
+          className="cursor-pointer hover:opacity-80"
+        >
+          👤
+        </Link>
+
+        {/* Back to Home */}
+        <Link
+          href="/"
+          className="ml-2 px-3 py-1 rounded text-sm bg-gray-700 hover:bg-gray-600 transition"
+        >
+          Home
+        </Link>
       </div>
     </header>
   );
