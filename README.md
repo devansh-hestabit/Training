@@ -9,6 +9,7 @@ This repository contains structured training modules organized by week:
 
 - **Week 1**: Core fundamentals including Node.js streams, performance analysis, API investigation, and project configuration
 - **Week 2**: Web development basics with HTML, CSS and JS
+- **Week 3**: Advanced frontend development using Tailwind CSS and Next.js
 
 ## Getting Started
 
