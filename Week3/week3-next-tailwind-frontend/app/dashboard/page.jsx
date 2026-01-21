@@ -5,19 +5,32 @@ import BarChart from "@/components/charts/BarChart";
 import TableCard from "@/components/ui/TableCard";
 import DataTable from "@/components/tables/DataTable";
 
+export const metadata = {
+  title: "Dashboard | HestaCart",
+  description:
+    "HestaCart dashboard provides real-time insights, analytics, and tools to manage your business efficiently.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 export default function DashboardPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 sm:space-y-8">
       {/* Page Title */}
       <div>
-        <h1 className="text-3xl font-semibold text-black">Dashboard</h1>
-        <div className="bg-gray-200 px-4 py-2 rounded mt-2 text-black">
+        <h1 className="text-2xl sm:text-3xl font-semibold text-black">
+          Dashboard
+        </h1>
+
+        <div className="bg-gray-200 px-3 py-1.5 sm:px-4 sm:py-2 rounded mt-2 text-sm sm:text-base text-black w-fit">
           Dashboard
         </div>
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <Card title="Primary Card" color="bg-blue-600">
           View Details →
         </Card>
@@ -36,7 +49,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         <ChartCard title="Area Chart Example">
           <AreaChart />
         </ChartCard>
@@ -47,7 +60,6 @@ export default function DashboardPage() {
       </div>
 
       {/* Table Section */}
-
       <TableCard title="DataTable Example">
         <DataTable />
       </TableCard>

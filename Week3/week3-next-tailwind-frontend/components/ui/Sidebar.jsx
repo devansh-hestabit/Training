@@ -1,14 +1,19 @@
 "use client";
+
 import Link from "next/link";
+
 export default function Sidebar({ isOpen }) {
   return (
     <aside
-      className={`bg-gray-900 text-gray-300 min-h-[calc(100vh-4rem)]
+      className={`
+        fixed sm:static top-16 left-0 z-40
+        bg-gray-900 text-gray-300
+        h-[calc(100vh-4rem)]
         transition-all duration-300 ease-in-out
         ${isOpen ? "w-64" : "w-0 overflow-hidden"}
       `}
     >
-      <nav className="px-4 py-6 space-y-6">
+      <nav className="px-4 py-6 space-y-6 w-64">
         {/* CORE */}
         <div>
           <p className="text-xs uppercase text-gray-500 mb-3">Core</p>
@@ -17,8 +22,7 @@ export default function Sidebar({ isOpen }) {
             href="/dashboard"
             className="flex items-center gap-3 text-white px-3 py-2 rounded hover:bg-gray-800"
           >
-            <span>📊</span>
-            <span>Dashboard</span>
+            📊 Dashboard
           </Link>
         </div>
 
@@ -27,19 +31,16 @@ export default function Sidebar({ isOpen }) {
           <p className="text-xs uppercase text-gray-500 mb-3">Interface</p>
 
           <div className="space-y-2">
-            <div className="flex items-center justify-between px-3 py-2 rounded hover:bg-gray-800 cursor-pointer">
-              <span>Layouts</span>
-              <span>›</span>
+            <div className="flex justify-between px-3 py-2 rounded hover:bg-gray-800 cursor-pointer">
+              Layouts <span>›</span>
             </div>
 
-            <div className="flex items-center justify-between px-3 py-2 rounded hover:bg-gray-800 cursor-pointer">
-              <span>Pages</span>
-              <span>›</span>
+            <div className="flex justify-between px-3 py-2 rounded hover:bg-gray-800 cursor-pointer">
+              Pages <span>›</span>
             </div>
           </div>
         </div>
 
-        {/* ADDONS */}
         {/* ADDONS */}
         <div>
           <p className="text-xs uppercase text-gray-500 mb-3">Addons</p>
@@ -47,7 +48,7 @@ export default function Sidebar({ isOpen }) {
           <div className="space-y-2">
             <Link
               href="/dashboard/profile"
-              className="flex px-3 py-2 rounded hover:bg-gray-800 cursor-pointer"
+              className="block px-3 py-2 rounded hover:bg-gray-800"
             >
               Profile
             </Link>
