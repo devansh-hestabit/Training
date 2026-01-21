@@ -23,6 +23,11 @@ week3-next-tailwind-frontend
     │   ├── charts
     │   │   ├── AreaChart.jsx
     │   │   └── BarChart.jsx
+    │   ├── landing
+    │   │   ├── Features.jsx
+    │   │   ├── Footer.jsx
+    │   │   ├── Hero.jsx
+    │   │   └── Testimonials.jsx
     │   ├── tables
     │   │   └── DataTable.jsx
     │   └── ui
@@ -43,5 +48,6 @@ week3-next-tailwind-frontend
     ├── package.json
     ├── postcss.config.mjs
     └── public
+    
 
 ```
