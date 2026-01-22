@@ -5,6 +5,10 @@ week3-next-tailwind-frontend
     ├── .gitignore
     ├── README.md
     ├── UI-COMPONENT-DOCS.md
+    ├── screenshots
+    │   ├── landing-page.png
+    │   ├── about-page.png
+    │   └── dashboard-page.png
     ├── app
     │   ├── (public)
     │   │   ├── about
