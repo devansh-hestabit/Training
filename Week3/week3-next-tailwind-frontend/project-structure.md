@@ -8,16 +8,23 @@ week3-next-tailwind-frontend
     ├── screenshots
     │   ├── landing-page.png
     │   ├── about-page.png
+    │   ├── login-page.png
+    │   ├── profile-page.png
+    │   ├── users-page.png
     │   └── dashboard-page.png
     ├── app
     │   ├── (public)
     │   │   ├── about
+    │   │   │   └── page.jsx
+    │   │   ├── login
     │   │   │   └── page.jsx
     │   │   ├── layout.jsx
     │   │   └── page.jsx
     │   ├── dashboard
     │   │   ├── layout.jsx
     │   │   ├── page.jsx
+    │   │   ├── users
+    │   │   │   └── page.jsx
     │   │   └── profile
     │   │       └── page.jsx
     │   ├── favicon.ico
@@ -33,6 +40,7 @@ week3-next-tailwind-frontend
     │   │   ├── Hero.jsx
     │   │   └── Testimonials.jsx
     │   ├── tables
+    │   │   ├── UsersTable.jsx
     │   │   └── DataTable.jsx
     │   └── ui
     │       ├── Badge.jsx
@@ -52,6 +60,7 @@ week3-next-tailwind-frontend
     ├── package.json
     ├── postcss.config.mjs
     └── public
-    
+        ├── hero.png
+        └── profile.jpeg        
 
 ```
