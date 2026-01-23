@@ -6,9 +6,9 @@ export default function PublicNavbar() {
   return (
     <header className="h-16 min-h-16 bg-gray-800 text-white flex items-center justify-between px-4 sm:px-6">
       {/* Brand */}
-      <span className="text-base sm:text-lg font-semibold whitespace-nowrap">
+      <Link href="/" className="text-base sm:text-lg font-semibold whitespace-nowrap">
         HestaCart
-      </span>
+      </Link>
 
       {/* Nav */}
       <nav className="flex items-center gap-4 sm:gap-8 text-sm font-medium">
@@ -22,6 +22,9 @@ export default function PublicNavbar() {
 
         <Link href="/dashboard" className="hover:text-gray-300">
           Dashboard
+        </Link>
+                <Link href="/login" className="hover:text-gray-300">
+          Login
         </Link>
       </nav>
     </header>

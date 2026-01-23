@@ -26,24 +26,9 @@ export default function Sidebar({ isOpen }) {
           </Link>
         </div>
 
-        {/* INTERFACE */}
-        <div>
-          <p className="text-xs uppercase text-gray-500 mb-3">Interface</p>
-
-          <div className="space-y-2">
-            <div className="flex justify-between px-3 py-2 rounded hover:bg-gray-800 cursor-pointer">
-              Layouts <span>›</span>
-            </div>
-
-            <div className="flex justify-between px-3 py-2 rounded hover:bg-gray-800 cursor-pointer">
-              Pages <span>›</span>
-            </div>
-          </div>
-        </div>
-
         {/* ADDONS */}
         <div>
-          <p className="text-xs uppercase text-gray-500 mb-3">Addons</p>
+          <p className="text-xs uppercase text-gray-500 mb-3">Quick Links</p>
 
           <div className="space-y-2">
             <Link
@@ -53,13 +38,19 @@ export default function Sidebar({ isOpen }) {
               Profile
             </Link>
 
-            <div className="px-3 py-2 rounded hover:bg-gray-800 cursor-pointer">
+            <Link
+              href="/dashboard/users"
+              className="block px-3 py-2 rounded hover:bg-gray-800"
+            >
+              Users
+            </Link>
+            <Link
+              href="/dashboard"
+              className="block px-3 py-2 rounded hover:bg-gray-800"
+            >
               Charts
-            </div>
+            </Link>
 
-            <div className="px-3 py-2 rounded hover:bg-gray-800 cursor-pointer">
-              Tables
-            </div>
           </div>
         </div>
       </nav>

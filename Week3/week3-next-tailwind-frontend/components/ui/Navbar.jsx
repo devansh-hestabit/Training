@@ -8,9 +8,9 @@ export default function Navbar({ isOpen, onToggleSidebar }) {
     <header className="h-16 min-h-16 bg-gray-800 text-white flex items-center justify-between px-4 sm:px-6">
       {/* Left */}
       <div className="flex items-center gap-3 shrink-0">
-        <span className="text-base sm:text-lg font-semibold whitespace-nowrap">
-          HestaCart
-        </span>
+      <Link href="/" className="text-base sm:text-lg font-semibold whitespace-nowrap">
+        HestaCart
+      </Link>
 
         <button
           onClick={onToggleSidebar}
