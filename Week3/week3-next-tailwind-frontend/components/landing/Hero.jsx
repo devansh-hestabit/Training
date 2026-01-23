@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -20,12 +21,13 @@ export default function Hero() {
 
         <div className="mt-8 flex flex-wrap gap-4">
           {/* Primary Button */}
-          <button
+          <Link
+            href="/login"
             className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-lg font-medium text-white
                        hover:bg-blue-700 transition-colors"
           >
             Get Started
-          </button>
+          </Link>
 
           {/* Outline Button */}
           <button
@@ -42,7 +44,7 @@ export default function Hero() {
       </div>
 
       {/* Image */}
-      <div className="relative w-full h-[320px] md:h-[420px]">
+      <div className="relative w-full h-80 md:h-105">
         <Image
           src="/hero.png"
           alt="HestaCart dashboard preview"

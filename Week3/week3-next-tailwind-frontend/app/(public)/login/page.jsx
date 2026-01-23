@@ -9,7 +9,6 @@ export default function LoginPage() {
   return (
     <Modal isOpen={true}>
       <div className="space-y-5">
-
         {/* Username */}
         <div className="relative">
           <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -38,7 +37,6 @@ export default function LoginPage() {
         <Button variant="success" href="/dashboard">
           LOGIN
         </Button>
-
       </div>
     </Modal>
   );
