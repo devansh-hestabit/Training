@@ -115,7 +115,7 @@ Screenshots for the following pages:
 
 ### Homepage
 
-![Homepage](week3-next-tailwind-frontend/screenshots/about-page.png)
+![Homepage](week3-next-tailwind-frontend/screenshots/landing-page.png)
 
 ### Dashboard
 
