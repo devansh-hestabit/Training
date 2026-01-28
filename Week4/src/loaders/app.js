@@ -1,6 +1,7 @@
 const express = require('express');
 const routes = require('../routes');
 const logger = require('../utils/logger');
+const errorMiddleware = require('../middlewares/error.middleware');
 
 module.exports = function loadApp() {
   const app = express();
@@ -12,6 +13,8 @@ module.exports = function loadApp() {
 
   app.use('/api', routes);
   logger.info('Routes mounted: 1 endpoint');
+
+  app.use(errorMiddleware);
 
   return app;
 };
