@@ -10,6 +10,7 @@ This repository contains structured training modules organized by week:
 - **Week 1**: Core fundamentals including Node.js streams, performance analysis, API investigation, and project configuration
 - **Week 2**: Web development basics with HTML, CSS and JS
 - **Week 3**: Advanced frontend development using Tailwind CSS and Next.js
+- **Week 4**: Backend development with Node.js, Express, and MongoDB
 
 ## Getting Started
 
@@ -37,6 +38,12 @@ Training/
 │   ├── Day2/ - Advanced Tailwind CSS
 │   ├── Day3/ - Next.js Routing + Layout System
 │   ├── Day4/ - Dynamic UI + Image Optimization
+│   └── Day5/ - Mini project
+├── Week4/
+│   ├── Day1/ - Node.js and Express basics
+│   ├── Day2/ - MongoDB integration
+│   ├── Day3/ - RESTful API development
+│   ├── Day4/ - Authentication and security
 │   └── Day5/ - Mini project
 └── README.md
 ```
