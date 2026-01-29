@@ -18,6 +18,15 @@ class ProductController {
       next(err);
     }
   }
+  static async createProduct(req, res, next) {
+  try {
+    const product = await ProductService.createProduct(req.body);
+    res.status(201).json({ success: true, data: product });
+  } catch (err) {
+    next(err);
+  }
+}
+
 }
 
 module.exports = ProductController;

@@ -10,6 +10,10 @@ class ProductRepository {
   static async findById(id) {
     return Product.findById(id);
   }
+  static async create(data) {
+  return Product.create(data);
+}
+
 
   static async softDelete(id) {
     return Product.findByIdAndUpdate(
