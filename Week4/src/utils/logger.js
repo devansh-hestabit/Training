@@ -1,19 +1,11 @@
-const winston = require('winston');
-const { logLevel } = require('../config');
+const pino = require('pino');
 
-const logger = winston.createLogger({
-  level: logLevel || 'info',
-  format: winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.printf(
-      ({ level, message, timestamp }) =>
-        `${timestamp} [${level.toUpperCase()}]: ${message}`
-    )
-  ),
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: 'src/logs/app.log' })
-  ]
+const logger = pino({
+  level: 'info',
+  timestamp: () => `,"time":"${new Date().toISOString()}"`,
 });
 
-module.exports = logger;
+module.exports = {
+  info: (msg, meta = {}) => logger.info(meta, msg),
+  error: (msg, meta = {}) => logger.error(meta, msg),
+};
