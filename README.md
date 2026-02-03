@@ -1,4 +1,3 @@
-
 # Training
 
 A progressive learning journey organized by weeks and days.
@@ -11,6 +10,7 @@ This repository contains structured training modules organized by week:
 - **Week 2**: Web development basics with HTML, CSS and JS
 - **Week 3**: Advanced frontend development using Tailwind CSS and Next.js
 - **Week 4**: Backend development with Node.js, Express, and MongoDB
+- **Week 5**: Server Side Foundations with Docker & DevOps Basics
 
 ## Getting Started
 
@@ -45,10 +45,11 @@ Training/
 │   ├── Day3/ - RESTful API development
 │   ├── Day4/ - Authentication and security
 │   └── Day5/ - Mini project
+├── Week5/
+│   ├── Day1/ - Docker & Linux in containers
+│   ├── Day2/ - Docker Compose & Multi-container apps
+│   ├── Day3/ - NGINX Reverse Proxy + Load Balancing
+│   ├── Day4/ - SSL + Self-Signed + mkcert + HTTPS
+│   └── Day5/ - CI-Style Deployment Automation + Capstone
 └── README.md
 ```
-
-
-
-
-
