@@ -9,7 +9,7 @@ const enquirySchema = new mongoose.Schema(
     destination: { type: String, required: true },
     travelType: {
       type: String,
-      enum: ["Leisure", "Adventure", "Honeymoon", "Family"]
+      enum: ["Leisure", "Adventure", "Family"]
     },
 
     startDate: Date,
