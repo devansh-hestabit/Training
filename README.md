@@ -46,7 +46,7 @@ Training/
 │   ├── Day4/ - Authentication and security
 │   └── Day5/ - Mini project
 ├── Week5/
-│   ├── Day1/ - Docker & Linux in containers
+│   ├── Day1/ - Docker Fundamentals + Linux Internals
 │   ├── Day2/ - Docker Compose & Multi-container apps
 │   ├── Day3/ - NGINX Reverse Proxy + Load Balancing
 │   ├── Day4/ - SSL + Self-Signed + mkcert + HTTPS
