@@ -61,7 +61,6 @@ const EnquiryForm = () => {
       <select name="travelType" onChange={handleChange}>
         <option>Leisure</option>
         <option>Adventure</option>
-        <option>Honeymoon</option>
         <option>Family</option>
       </select>
 
