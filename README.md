@@ -11,7 +11,7 @@ This repository contains structured training modules organized by week:
 - **Week 3**: Advanced frontend development using Tailwind CSS and Next.js
 - **Week 4**: Backend development with Node.js, Express, and MongoDB
 - **Week 5**: Server Side Foundations with Docker & DevOps Basics
-
+- **Week 6**: Machine Learning Engineering
 ## Getting Started
 
 Each week contains daily exercises and projects. Navigate to the relevant week folder to find specific learning modules.
@@ -51,5 +51,11 @@ Training/
 │   ├── Day3/ - NGINX Reverse Proxy + Load Balancing
 │   ├── Day4/ - SSL + Self-Signed + mkcert + HTTPS
 │   └── Day5/ - CI-Style Deployment Automation + Capstone
+├── Week6/
+│   ├── Day1/ - Introduction to Machine Learning
+│   ├── Day2/ - FEATURE ENGINEERING + FEATURE SELECTION
+│   ├── Day3/ - Model Training and Evaluation
+│   ├── Day4/ - HYPERPARAMETER TUNING + EXPLAINABILITY + ERROR ANALYSIs
+│   └── Day5/ - Capstone Project: End-to-End ML Pipeline
 └── README.md
 ```
