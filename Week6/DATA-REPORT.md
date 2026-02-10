@@ -67,30 +67,31 @@ EDA was performed using the processed dataset to validate the effectiveness of t
 ### 5.1 Missing Values Analysis
 - Missing values heatmap showed no remaining missing values.
 - Confirms successful imputation.
+![Missing Values Heatmap](screenshots/heatmap.png)
 
 ### 5.2 Feature Distributions
 - Histograms were generated for all numerical features.
 - Observations:
   - Some features show skewed distributions.
   - Zero-inflated behavior observed in capital gain/loss features.
+  ![Feature Distributions](screenshots/feature-distribution.png)
 
 ### 5.3 Correlation Analysis
 - Correlation matrix generated for numerical features only.
 - Used to identify:
   - Linear relationships
   - Multicollinearity risks
+  ![Correlation Matrix](screenshots/correlation-matrix.png)
 
 ### 5.4 Target Distribution
 - Target variable (`income`) distribution analyzed.
 - Observed class imbalance:
   - Majority class: `<=50K`
   - Minority class: `>50K`
-
+  ![Target Distribution](screenshots/income-distribution.png)
 
 ## 6. Key Observations & Considerations
 - Dataset required explicit handling of non-standard missing values (`"?"`).
 - Capital gain and loss features require special treatment due to zero inflation.
 - Target variable is categorical and must be encoded in later stages.
 - Class imbalance must be addressed during model training.
-
-
