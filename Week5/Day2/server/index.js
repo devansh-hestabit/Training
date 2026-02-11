@@ -6,7 +6,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ✅ HEALTH CHECK
 app.get("/health", (req, res) => {
   res.send("Server is healthy");
 });

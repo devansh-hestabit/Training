@@ -1,0 +1,26 @@
+Day 1 
+Command -
+docker build -t node-day1 .
+docker run -p 3000:3000 node-day1
+http://localhost:3000/
+
+
+Day 2
+Command
+docker compose up --build -d
+http://localhost:3000/
+
+
+Day 3
+Command 
+docker compose up --build -d
+http://localhost:8080/api
+
+Day4
+docker compose up --build -d
+https://devansh-hestabit.local/
+
+Day5
+./build.sh
+https://localhost/
+./down.sh
