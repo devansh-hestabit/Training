@@ -1,0 +1,6 @@
+1- 
+open week 6 in new tab 
+source venv/bin/activate
+python src/pipelines/data_pipeline.py 
+python src/features/build_features.py
+python src/features/feature_selector.py
