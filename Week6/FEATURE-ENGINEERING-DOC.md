@@ -16,9 +16,17 @@ Operations performed:
 ## Feature Engineering
 
 Engineered Features Created:
-
 -   has_capital_gain
 -   has_capital_loss
+Numerical Features: - StandardScaler applied 
+Categorical Features: - OneHotEncoder used 
+ColumnTransformer ensures: - No data leakage - Train-only fitting -
+
+## Train/Test Split
+
+-   test_size=0.2
+-   random_state=42 (reproducibility)
+-   stratify=y (class balance maintained)
 -   capital_total
 -   capital_per_hour
 -   age_squared
