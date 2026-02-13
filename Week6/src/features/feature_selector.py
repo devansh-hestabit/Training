@@ -14,10 +14,6 @@ def select_features():
     selected_mask = selector.get_support() #boolean return 
     selected_features = feature_names[selected_mask]
 
-    print("\nSelected Top 20 Features:")
-    for feature in selected_features:
-        print(feature)
-
     print("\nOriginal shape:", X_train.shape)
     print("Reduced shape:", X_train_selected.shape)
 
