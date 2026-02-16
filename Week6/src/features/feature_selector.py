@@ -1,6 +1,8 @@
+import os
 from sklearn.feature_selection import mutual_info_classif
 from src.features.build_features import run
 from sklearn.feature_selection import SelectKBest
+import joblib
 
 
 def select_features():
@@ -16,7 +18,8 @@ def select_features():
 
     print("\nOriginal shape:", X_train.shape)
     print("Reduced shape:", X_train_selected.shape)
-
+    SELECTOR_PATH = os.path.join(os.path.dirname(__file__), "..", "models", "selector.pkl")
+    joblib.dump(selector, SELECTOR_PATH)
     return X_train_selected, X_test_selected, y_train, y_test, selected_features
 
 

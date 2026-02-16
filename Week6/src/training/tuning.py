@@ -53,7 +53,7 @@ def run_tuning():
     print("Starting hyperparameter tuning...")
 
     study = optuna.create_study(direction="maximize")
-    study.optimize(objective, n_trials=30)
+    study.optimize(objective, n_trials=15)
 
     print("Tuning completed.")
     print("Best F1 Score:", study.best_value)

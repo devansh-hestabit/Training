@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
+import joblib
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DATA_PATH = os.path.join(BASE_DIR, "data", "processed", "final.csv")
@@ -77,6 +78,10 @@ def run():
 
     with open(feature_path, "w") as f:
         json.dump(list(feature_names), f, indent=4)
+
+    PREPROCESSOR_PATH = os.path.join(BASE_DIR, "models", "preprocessor.pkl")
+
+    joblib.dump(preprocessor, PREPROCESSOR_PATH)
 
     print("Feature pipeline completed.")
 
