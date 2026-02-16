@@ -43,9 +43,6 @@ class PredictionOutput(BaseModel):
     timestamp: str
 
 
-# ------------------------------------------------------------------
-# Predict
-# ------------------------------------------------------------------
 @app.post("/predict", response_model=PredictionOutput)
 def predict(data: PredictionInput):
 
@@ -71,19 +68,13 @@ def predict(data: PredictionInput):
 }])
 
 
-
-    # Feature engineering
     engineered_df = create_new_features(raw_df)
-
-    # Preprocessing + selection
     X_processed = preprocessor.transform(engineered_df)
     X_selected = selector.transform(X_processed)
 
     prob = model.predict_proba(X_selected)[0][1]
     prediction = int(prob >= 0.5)
-
-    # Logging
-    # Logging (prediction metadata only)
+    
     log_row = {
     "request_id": request_id,
     "timestamp": timestamp,

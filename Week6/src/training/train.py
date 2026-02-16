@@ -20,8 +20,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 
 from xgboost import XGBClassifier
-
-# Import selected features from Day 2
 from src.features.feature_selector import select_features
 
 
@@ -116,15 +114,12 @@ def train():
 
     print(f"\nBest model selected: {best_model_name}")
 
-    # Retrain best model on full training data
     best_model = models[best_model_name]
     best_model.fit(X_train, y_train)
 
-    # Save model
     model_path = os.path.join(MODELS_DIR, "best_model.pkl")
     joblib.dump(best_model, model_path)
 
-    # Final evaluation on test set
     test_preds = best_model.predict(X_test)
     test_probs = best_model.predict_proba(X_test)[:, 1]
 
@@ -139,12 +134,12 @@ def train():
     results["best_model"] = best_model_name
     results["test_metrics"] = test_metrics
 
-    # Save metrics
+
     metrics_path = os.path.join(EVAL_DIR, "metrics.json")
     with open(metrics_path, "w") as f:
         json.dump(results, f, indent=4)
 
-    # Confusion Matrix
+
     cm = confusion_matrix(y_test, test_preds)
     disp = ConfusionMatrixDisplay(confusion_matrix=cm)
     disp.plot()

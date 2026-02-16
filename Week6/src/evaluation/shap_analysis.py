@@ -20,7 +20,6 @@ def run_shap():
     explainer = shap.Explainer(model)
     shap_values = explainer(X_train)
 
-    # SHAP Summary Plot
     shap.summary_plot(
         shap_values,
         X_train,
@@ -29,8 +28,6 @@ def run_shap():
     )
     plt.savefig(os.path.join(EVAL_DIR, "shap_summary.png"))
     plt.close()
-
-    # Feature Importance (Global)
     importance = model.feature_importances_
 
     plt.figure(figsize=(10, 6))

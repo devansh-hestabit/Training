@@ -32,10 +32,10 @@ def check_drift():
     print(f"Positive class rate: {positive_rate:.4f}")
 
     if mean_prob < 0.2 or mean_prob > 0.8:
-        print("⚠️ Warning: Prediction confidence drift detected.")
+        print("Prediction confidence drift detected.")
 
     if positive_rate < 0.1 or positive_rate > 0.9:
-        print("⚠️ Warning: Class distribution drift detected.")
+        print("Class distribution drift detected.")
 
     print("\nDrift check completed.")
 

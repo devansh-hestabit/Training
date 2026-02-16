@@ -23,7 +23,6 @@ def create_new_features(df):
 
     original_cols = df.columns.tolist()
 
-    # 10+ engineered features
     df["has_capital_gain"] = (df["capital.gain"] > 0).astype(int)
     df["has_capital_loss"] = (df["capital.loss"] > 0).astype(int)
     df["capital_total"] = df["capital.gain"] + df["capital.loss"]

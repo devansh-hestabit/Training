@@ -59,7 +59,6 @@ def run_tuning():
     print("Best F1 Score:", study.best_value)
     print("Best Parameters:", study.best_params)
 
-    # Load full data
     X_train, X_test, y_train, y_test, _ = select_features()
 
     best_model = XGBClassifier(
