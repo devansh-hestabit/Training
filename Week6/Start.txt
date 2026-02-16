@@ -2,7 +2,11 @@ open week 6 in new tab
 source venv/bin/activate
 python src/pipelines/data_pipeline.py 
 python src/features/build_features.py
-python src/features/feature_selector.py activate
 python -m src.training.train
 python -m src.training.tuning
 python -m src.evaluation.shap_analysis
+python -m uvicorn src.deployment.api:app --reload
+http://127.0.0.1:8000/docs
+python src/utils/run_tests.py
+docker build --no-cache -t income-predictor -f src/deployment/Dockerfile .
+docker run -p 8000:8000 income-predictor
