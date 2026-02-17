@@ -1,11 +1,11 @@
 import os
-import uuid
+import uuid #for generating unique request IDs
 from datetime import datetime
 
 import joblib
 import pandas as pd
-from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi import FastAPI #for building the API 
+from pydantic import BaseModel  #for defining data models for request and response validation
 
 from src.features.build_features import create_new_features
 app = FastAPI(title="Income Prediction API")
