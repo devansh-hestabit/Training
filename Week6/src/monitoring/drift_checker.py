@@ -5,7 +5,6 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 LOG_PATH = os.path.join(BASE_DIR, "prediction_logs.csv")
 
 def check_drift():
-    print("Running drift check...\n")
 
     if not os.path.exists(LOG_PATH):
         print("No prediction logs found.")
@@ -16,7 +15,7 @@ def check_drift():
     if df.empty:
         print("Prediction log is empty.")
         return
-    df["prediction"] = pd.to_numeric(df["prediction"], errors="coerce")
+    df["prediction"] = pd.to_numeric(df["prediction"], errors="coerce") #convert to numeric, coerce errors to NaN
     df["probability"] = pd.to_numeric(df["probability"], errors="coerce")
 
     df = df.dropna(subset=["prediction", "probability"])

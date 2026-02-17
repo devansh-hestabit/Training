@@ -55,7 +55,7 @@ def run():
         X, y,
         test_size=0.2,
         random_state=42,
-        stratify=y
+        stratify=y #for class balance in train/test split
     )
 
     categorical_cols = X.select_dtypes(include=["object", "category","string"]).columns
@@ -68,8 +68,8 @@ def run():
         ]
     )
 
-    X_train_processed = preprocessor.fit_transform(X_train)
-    X_test_processed = preprocessor.transform(X_test)
+    X_train_processed = preprocessor.fit_transform(X_train) #fit on train set only to prevent data leakage
+    X_test_processed = preprocessor.transform(X_test)#transform test set using train-fitted preprocessor
     feature_names = preprocessor.get_feature_names_out()
     feature_path = os.path.join(BASE_DIR, "features", "feature_list.json")
 

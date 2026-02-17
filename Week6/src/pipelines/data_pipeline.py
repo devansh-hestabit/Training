@@ -16,11 +16,11 @@ def handle_missing_values(df):
     df = df.replace("?", np.nan)
     numeric_cols = df.select_dtypes(include=[np.number]).columns
     for col in numeric_cols:
-        df[col] = df[col].fillna(df[col].median())
+        df[col] = df[col].fillna(df[col].median())#fill missing numeric values with median
 
     categorical_cols = df.select_dtypes(include=["object", "string"]).columns
     for col in categorical_cols:
-        df[col] = df[col].fillna(df[col].mode()[0])
+        df[col] = df[col].fillna(df[col].mode()[0]) #fill missing categorical values with most frequent category
 
     return df
 
@@ -31,7 +31,8 @@ def remove_duplicates(df):
 
 def remove_outliers(df):
     numeric_cols = df.select_dtypes(include=[np.number]).columns
-    numeric_cols = [col for col in numeric_cols if col not in ["capital.gain", "capital.loss"]]
+    numeric_cols = [col for col in numeric_cols if col not in ["capital.gain", "capital.loss"]] #exclude capital.gain and capital.loss from outlier removal
+                                                                                                #since they have many zeros and few large values which are valid
 
     for col in numeric_cols:
         Q1 = df[col].quantile(0.25)

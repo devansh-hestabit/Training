@@ -9,7 +9,7 @@ def select_features():
 
     X_train, X_test, y_train, y_test, feature_names = run()
 
-    selector = SelectKBest(score_func=mutual_info_classif, k=20)
+    selector = SelectKBest(score_func=mutual_info_classif, k=20) #select top 20 features based on mutual information score with target variable
 
     X_train_selected = selector.fit_transform(X_train, y_train)
     X_test_selected = selector.transform(X_test)

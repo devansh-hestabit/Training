@@ -34,27 +34,27 @@ os.makedirs(EVAL_DIR, exist_ok=True)
 def get_models():
     return {
         "logistic_regression": LogisticRegression(
-            solver="lbfgs",
-            C=1.0,
-            max_iter=1000,
+            solver="lbfgs", #lbfgs solver for better performance on small datasets
+            C=1.0, #default regularization strength
+            max_iter=1000, #increase max iterations to ensure convergence
             random_state=42
         ),
 
         "random_forest": RandomForestClassifier(
-            n_estimators=200,
+            n_estimators=200,#number of trees in the forest
             max_depth=None,
             random_state=42
         ),
         "xgboost": XGBClassifier(
             n_estimators=200,
-            learning_rate=0.1,
+            learning_rate=0.1,#step size shrinkage to prevent overfitting
             max_depth=6,
-            eval_metric="logloss",
+            eval_metric="logloss",#logloss for binary classification
             random_state=42
         ),
         "mlp": MLPClassifier(
             hidden_layer_sizes=(128, 64),
-            alpha=0.0001,
+            alpha=0.0001,#L2 regularization
             max_iter=1000,
             random_state=42
         )
@@ -88,7 +88,6 @@ def evaluate_model(model, X, y, cv):
 
 
 def train():
-    print("Loading selected features...")
     X_train, X_test, y_train, y_test, feature_names = select_features()
 
     models = get_models()
@@ -148,10 +147,6 @@ def train():
     plt.close()
 
     print("\nTraining complete.")
-    print("Best model saved to /models/best_model.pkl")
-    print("Metrics saved to /evaluation/metrics.json")
-    print("Confusion matrix saved to /evaluation/confusion_matrix.png")
-
 
 if __name__ == "__main__":
     train()

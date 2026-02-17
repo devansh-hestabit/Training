@@ -1,5 +1,4 @@
 import os
-import json
 import joblib
 import shap
 import matplotlib.pyplot as plt
@@ -13,7 +12,7 @@ os.makedirs(EVAL_DIR, exist_ok=True)
 
 
 def run_shap():
-    X_train, _, y_train, _, feature_names = select_features()
+    X_train, _, y_train, _, feature_names = select_features() #_ to ignore test set 
 
     model = joblib.load(MODEL_PATH)
 
@@ -31,9 +30,9 @@ def run_shap():
     importance = model.feature_importances_
 
     plt.figure(figsize=(10, 6))
-    plt.barh(feature_names, importance)
+    plt.barh(feature_names, importance) #horizontal bar plot for better readability
     plt.title("Feature Importance")
-    plt.tight_layout()
+    plt.tight_layout()   #adjust layout to prevent label cutoff
     plt.savefig(os.path.join(EVAL_DIR, "feature_importance.png"))
     plt.close()
 

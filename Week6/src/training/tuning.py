@@ -1,7 +1,7 @@
 import os
 import json
 import joblib
-import optuna
+import optuna #for hyperparameter tuning using bayesian optimization
 import numpy as np
 
 from sklearn.model_selection import StratifiedKFold
@@ -24,16 +24,16 @@ def objective(trial):
     X_train, _, y_train, _, _ = select_features()
 
     params = {
-        "n_estimators": trial.suggest_int("n_estimators", 150, 400),
-        "max_depth": trial.suggest_int("max_depth", 3, 8),
-        "learning_rate": trial.suggest_float("learning_rate", 0.01, 0.2),
-        "subsample": trial.suggest_float("subsample", 0.7, 1.0),
-        "colsample_bytree": trial.suggest_float("colsample_bytree", 0.7, 1.0),
+        "n_estimators": trial.suggest_int("n_estimators", 150, 400), #number of trees in the forest
+        "max_depth": trial.suggest_int("max_depth", 3, 8), #maximum depth of the tree
+        "learning_rate": trial.suggest_float("learning_rate", 0.01, 0.2),#step size shrinkage to prevent overfitting
+        "subsample": trial.suggest_float("subsample", 0.7, 1.0),#subsample ratio of the training instances
+        "colsample_bytree": trial.suggest_float("colsample_bytree", 0.7, 1.0),#subsample ratio of columns when constructing each tree
         "eval_metric": "logloss",
         "random_state": 42
     }
 
-    model = XGBClassifier(**params)
+    model = XGBClassifier(**params) 
 
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
     scores = []
@@ -50,19 +50,16 @@ def objective(trial):
 
 
 def run_tuning():
-    print("Starting hyperparameter tuning...")
 
-    study = optuna.create_study(direction="maximize")
-    study.optimize(objective, n_trials=15)
-
-    print("Tuning completed.")
+    study = optuna.create_study(direction="maximize") 
+    study.optimize(objective, n_trials=35)
     print("Best F1 Score:", study.best_value)
     print("Best Parameters:", study.best_params)
 
     X_train, X_test, y_train, y_test, _ = select_features()
 
     best_model = XGBClassifier(
-        **study.best_params,
+        **study.best_params, #unpack best hyperparameters from Optuna
         eval_metric="logloss",
         random_state=42
     )

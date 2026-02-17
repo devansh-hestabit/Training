@@ -20,6 +20,7 @@ model = joblib.load(MODEL_PATH)
 preprocessor = joblib.load(PREPROCESSOR_PATH)
 selector = joblib.load(SELECTOR_PATH)
 
+#input schema
 class PredictionInput(BaseModel):
     age: int
     education_num: int
@@ -47,7 +48,7 @@ class PredictionOutput(BaseModel):
 def predict(data: PredictionInput):
 
     request_id = str(uuid.uuid4())
-    timestamp = datetime.utcnow().isoformat()
+    timestamp = datetime.isoformat()
 
     raw_df = pd.DataFrame([{
     "age": data.age,
@@ -55,23 +56,19 @@ def predict(data: PredictionInput):
     "hours.per.week": data.hours_per_week,
     "capital.gain": data.capital_gain,
     "capital.loss": data.capital_loss,
-
     "sex": data.sex,
     "marital.status": data.marital_status,
     "education": data.education,
     "occupation": data.occupation,
     "relationship": data.relationship,
-
     "workclass": data.workclass,
     "race": data.race,
     "native.country": data.native_country
 }])
 
-
     engineered_df = create_new_features(raw_df)
     X_processed = preprocessor.transform(engineered_df)
     X_selected = selector.transform(X_processed)
-
     prob = model.predict_proba(X_selected)[0][1]
     prediction = int(prob >= 0.5)
     
