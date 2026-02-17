@@ -56,10 +56,16 @@ SHAP reveals that while education is important, capital gain, age-education
 interactions, and working hours also have strong and sometimes larger impacts on
 individual predictions.
 Therefore, SHAP-based interpretation was prioritized for explainability and error analysis.
+
+
 ### Feature Importance Plot
 ![Feature Importance](src/evaluation/feature_importance.png)
+
+
 ### SHAP Summary Plot
 ![SHAP Summary](src/evaluation/shap_summary.png)
+
+
 ## Error Analysis
 Error patterns were analyzed using confusion matrices and feature-level
 inspection.
@@ -68,6 +74,10 @@ The confusion matrix indicates that the model performs strongly on the majority
 conservative in predicting high income, resulting in fewer false positives but
 a moderate number of false negatives. This behavior is consistent with the
 observed precision–recall trade-off and aligns with SHAP-based feature analysis.
+
+![Error Analysis](src/evaluation/error_magnitude_heatmap.png)
+
+
 ### Confusion Matrix (Baseline Model)
 ![Confusion Matrix](src/evaluation/confusion_matrix.png)
 
