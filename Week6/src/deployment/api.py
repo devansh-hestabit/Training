@@ -48,7 +48,7 @@ class PredictionOutput(BaseModel):
 def predict(data: PredictionInput):
 
     request_id = str(uuid.uuid4())
-    timestamp = datetime.isoformat()
+    timestamp = datetime.now().isoformat()
 
     raw_df = pd.DataFrame([{
     "age": data.age,
