@@ -1,6 +1,6 @@
 import os
 import pickle
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter #for chunking
 from src.utils.doc_load import load_document
 
 RAW_DATA_DIR = "src/data/raw"
@@ -35,11 +35,11 @@ def run_ingestion():
                     "metadata": metadata
                 })
 
-    with open(CHUNKS_OUTPUT_PATH, "wb") as f:
+    with open(CHUNKS_OUTPUT_PATH, "wb") as f: #wb for writing in binary mode
         pickle.dump(all_chunks, f)
 
-    print(f"✅ Ingestion completed")
-    print(f"📦 Total chunks created: {len(all_chunks)}")
+    print(f"Ingestion completed")
+    print(f"Total chunks created: {len(all_chunks)}")
 
 
 if __name__ == "__main__":

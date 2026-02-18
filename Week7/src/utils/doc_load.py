@@ -67,7 +67,7 @@ def load_document(file_path: str):
                     "text": text,
                     "metadata": {
                         "source": filename,
-                        "page": row_idx,
+                        "page": row_idx, 
                         "type": "csv",
                         "tags": []
                     }
