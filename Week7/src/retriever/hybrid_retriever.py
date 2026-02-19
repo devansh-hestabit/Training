@@ -21,7 +21,7 @@ def apply_filters(indices, filters):
     filtered = []
     for idx in indices:
         meta = metadata[idx]
-        keep = True
+        keep = True 
 
         for key, value in filters.items():
             if key not in meta or str(meta[key]) != str(value):
@@ -39,22 +39,18 @@ def hybrid_retrieve(
     filters: dict | None = None
 ):
     
-    # -------- Semantic Search --------
     query_embedding = embedding_model.encode([query]).astype("float32")
-    _, semantic_indices = faiss_index.search(query_embedding, top_k * 2)
-    semantic_indices = semantic_indices[0].tolist()
-
+    _, semantic_indices = faiss_index.search(query_embedding, top_k * 2) #_ is for distances which we don't need here
+    semantic_indices = semantic_indices[0].tolist() 
     semantic_indices = apply_filters(semantic_indices, filters)
 
-    # -------- Keyword Search (BM25 fallback) --------
     query_tokens = query.lower().split()
     bm25_scores = bm25.get_scores(query_tokens)
-    keyword_indices = np.argsort(bm25_scores)[::-1][: top_k * 2].tolist()
+    keyword_indices = np.argsort(bm25_scores)[::-1][: top_k * 2].tolist() #[::-1] is for sorting in descending order and [: top_k * 2] is to get the top K results
 
     keyword_indices = apply_filters(keyword_indices, filters)
     
-    # -------- Merge & Deduplicate --------
-    combined_indices = list(dict.fromkeys(semantic_indices + keyword_indices))
+    combined_indices = list(dict.fromkeys(semantic_indices + keyword_indices)) #dict.fromkeys is used to remove duplicates while preserving order
 
     candidates = []
     for idx in combined_indices:
