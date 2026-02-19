@@ -18,7 +18,6 @@ The goal is to increase precision, reduce hallucination, and produce traceable, 
 - Strength: captures semantic meaning
 - Weakness: may miss exact keyword matches
 
-
 ### Keyword Search (BM25 Fallback)
 
 - Uses BM25 ranking over tokenized chunks
@@ -43,7 +42,6 @@ This ensures:
 - Cosine similarity is computed between query and chunk embeddings
 - Candidates are reordered by relevance score
 
-
 ## 4 Deduplication Strategy
 
 ### Problem
@@ -53,13 +51,11 @@ Documents often contain:
 - Overlapping chunks
 - Near-duplicate information
 
-
 ### Solution
 
 - Compute cosine similarity between chunks
 - Remove chunks with similarity above a defined threshold
 - Retain only unique information
-
 
 ## 5. Max Marginal Relevance (MMR)
 
@@ -78,13 +74,11 @@ MMR balances:
 - Select top-ranked, diverse chunks
 - Ensure compatibility with LLM context limits
 
-
 ### Traceability
 
 Each context block includes:
 - Source document
 - Page number or row identifier
-
 
 ## 7. End-to-End Day 2 Retrieval Flow
 
