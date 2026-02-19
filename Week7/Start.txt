@@ -2,3 +2,4 @@ Open Week 7 in new VSCODE Tab
 python -m src.pipelines.ingest
 python -m src.embeddings.embedder
 python -m src.vectorstore.index
+python -m src.app
