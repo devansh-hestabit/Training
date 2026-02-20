@@ -35,7 +35,7 @@ def generate_caption(image_path):
 
     with torch.no_grad():  #no gradient needed for inference
         out = blip_model.generate(**inputs, max_new_tokens=30) #generate caption 
-
+]
     caption = blip_processor.decode(out[0], skip_special_tokens=True)
     return caption
 
