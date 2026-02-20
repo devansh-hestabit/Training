@@ -97,6 +97,7 @@ def image_to_text(image_path: str, top_k: int = 3):
     query_vec = embed_image(image_path)
     k = min(top_k, len(text_records))
     scores, indices = text_index.search(query_vec, k)
+
     results = []
     for rank, idx in enumerate(indices[0]):
         rec = text_records[idx]
@@ -104,25 +105,87 @@ def image_to_text(image_path: str, top_k: int = 3):
             "rank": rank + 1,
             "score": float(scores[0][rank]),
             "image_id": rec["id"],
-            "ocr_text": rec["metadata"]["ocr_text"],
             "caption": rec["metadata"].get("caption"),
-            "metadata": rec["metadata"]
         })
 
     return results
 
+
+def run_multimodal_pipeline(
+    query_text: str,
+    text_top_k: int = 5,
+    image_top_k: int = 5,
+    caption_top_k: int = 3
+):
+
+    text_image_results = text_to_image(query_text, top_k=text_top_k)
+
+    if not text_image_results:
+        return {
+            "text_to_image": [],
+            "image_to_image": [],
+            "image_to_text": []
+        }
+
+
+    sample_image = text_image_results[0]["image_path"]
+
+    image_results = image_to_image(sample_image, top_k=image_top_k)
+
+    image_text_results = []
+
+    for img in image_results:
+        text_results = image_to_text(
+            img["image_path"],
+            top_k=caption_top_k
+        )
+
+        image_text_results.append({
+            "image_id": img["image_id"],
+            "image_path": img["image_path"],
+            "captions": [
+                t["caption"] for t in text_results if t["caption"]
+            ]
+        })
+
+    return {
+        "text_to_image": [
+            {
+                "image_id": r["image_id"],
+                "image_path": r["image_path"]
+            }
+            for r in text_image_results
+        ],
+        "image_to_image": [
+            {
+                "image_id": r["image_id"],
+                "image_path": r["image_path"]
+            }
+            for r in image_results
+        ],
+        "image_to_text": image_text_results
+    }
+
 if __name__ == "__main__":
-    print("\n--- TEXT → IMAGE ---")
-    results = text_to_image("dog")
-    for r in results:
+    results = run_multimodal_pipeline(
+        query_text="dog",
+        text_top_k=5,
+        image_top_k=5,
+        caption_top_k=3
+    )
+
+    print("\n--- TEXT → IMAGE (name + path) ---")
+    for r in results["text_to_image"]:
         print(r)
 
-    sample_image = results[0]["image_path"]
-
-    print("\n--- IMAGE → IMAGE ---")
-    for r in image_to_image(sample_image):
+    print("\n--- IMAGE → IMAGE (name + path) ---")
+    for r in results["image_to_image"]:
         print(r)
 
-    print("\n--- IMAGE → TEXT ---")
-    for r in image_to_text(sample_image):
-        print(r["ocr_text"][:300])
+    print("\n--- IMAGE → TEXT (name + path + captions) ---")
+    for r in results["image_to_text"]:
+        print({
+            "image_id": r["image_id"],
+            "image_path": r["image_path"],
+            "captions": r["captions"]
+        })
