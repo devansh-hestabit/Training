@@ -15,9 +15,6 @@ OCR_PKL_PATH = "src/data/ocr/ocr_data.pkl"
 os.makedirs(IMAGE_STORE_DIR, exist_ok=True)
 os.makedirs(OCR_STORE_DIR, exist_ok=True)
 
-# -----------------------------
-# Load BLIP model
-# -----------------------------
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 blip_processor = BlipProcessor.from_pretrained(
@@ -27,39 +24,27 @@ blip_model = BlipForConditionalGeneration.from_pretrained(
     "Salesforce/blip-image-captioning-base"
 ).to(device)
 
-
 def ocr_image(image_path):
     image = cv2.imread(image_path)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     return pytesseract.image_to_string(gray).strip()
 
-
 def generate_caption(image_path):
     image = Image.open(image_path).convert("RGB")
-    inputs = blip_processor(image, return_tensors="pt").to(device)
+    inputs = blip_processor(image, return_tensors="pt").to(device) #pt for PyTorch
 
-    with torch.no_grad():
-        out = blip_model.generate(**inputs, max_new_tokens=30)
+    with torch.no_grad():  #no gradient needed for inference
+        out = blip_model.generate(**inputs, max_new_tokens=30) #generate caption 
 
     caption = blip_processor.decode(out[0], skip_special_tokens=True)
     return caption
 
-
 def ingest_images():
-    """
-    Ingest images and scanned PDFs:
-    - Save images
-    - Extract OCR
-    - Generate BLIP captions
-    - Store structured metadata in PKL
-    """
-
     records = []
 
     for file in os.listdir(RAW_IMAGE_DIR):
         path = os.path.join(RAW_IMAGE_DIR, file)
 
-        # ---------- Image files ----------
         if file.lower().endswith((".png", ".jpg", ".jpeg")):
             img = Image.open(path)
             img_save_path = os.path.join(IMAGE_STORE_DIR, file)
@@ -78,7 +63,6 @@ def ingest_images():
                 "type": "image"
             })
 
-        # ---------- Scanned PDFs ----------
         elif file.lower().endswith(".pdf"):
             pages = convert_from_path(path)
 
@@ -100,13 +84,11 @@ def ingest_images():
                     "type": "scanned_pdf"
                 })
 
-    # -------- Save multimodal ingestion data --------
     with open(OCR_PKL_PATH, "wb") as f:
         pickle.dump(records, f)
 
-    print("✅ Image ingestion completed")
-    print(f"🧠 Records stored: {len(records)}")
-
+    print("Image ingestion completed")
+    print(f"Records stored: {len(records)}")
 
 if __name__ == "__main__":
     ingest_images()
