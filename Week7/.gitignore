@@ -2,3 +2,5 @@ venv/
 .venv/
 __pycache__/
 *.pyc
+src/data/raw_images/*
+src/data/images/*
