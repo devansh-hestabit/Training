@@ -4,3 +4,7 @@ __pycache__/
 *.pyc
 src/data/raw_images/*
 src/data/images/*
+src/data/sql/*
+
+
+.env
