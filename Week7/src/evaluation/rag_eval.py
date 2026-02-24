@@ -39,7 +39,6 @@ def confidence_score(answer: str, context_chunks: List[str]) -> float:
     length_bonus = min(len(answer.split()) / 100, 0.3)
     return round(min(faith + length_bonus, 1.0), 2)
 
-
 def needs_refinement(answer: str, context_chunks: List[str]) -> bool:
     return faithfulness_score(answer, context_chunks) < 0.5
 
