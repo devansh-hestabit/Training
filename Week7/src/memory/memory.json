@@ -41,48 +41,6 @@
       "timestamp": "12:31:17"
     }
   ],
-  "streamlit-user::text": [
-    {
-      "role": "user",
-      "content": "GIve me name of the company",
-      "timestamp": "12:33:30"
-    },
-    {
-      "role": "assistant",
-      "content": "Celldex Therapeutics, Inc.",
-      "timestamp": "12:33:30"
-    },
-    {
-      "role": "user",
-      "content": "GIve me name of the company",
-      "timestamp": "12:50:19"
-    },
-    {
-      "role": "assistant",
-      "content": "Celldex Therapeutics, Inc.",
-      "timestamp": "12:50:19"
-    },
-    {
-      "role": "user",
-      "content": "What is the name of the company",
-      "timestamp": "12:56:40"
-    },
-    {
-      "role": "assistant",
-      "content": "Celldex Therapeutics, Inc.",
-      "timestamp": "12:56:40"
-    },
-    {
-      "role": "user",
-      "content": "what is the moto of the company",
-      "timestamp": "15:23:44"
-    },
-    {
-      "role": "assistant",
-      "content": "There is no mention of the company's motto in the provided context. The text appears to be a collection of excerpts from a financial or business document, discussing topics such as mergers, manufacturing, and contract services, but it does not include any information about the company's motto.",
-      "timestamp": "15:23:44"
-    }
-  ],
   "streamlit-user::image": [
     {
       "role": "user",
