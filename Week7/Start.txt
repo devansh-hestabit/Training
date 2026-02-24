@@ -17,3 +17,6 @@ python -m src.retriever.image_search (Change query in main function)
 
 Sql
 streamlit app_sql.py
+
+Day 5 
+streamlit run streamlit_app.py
