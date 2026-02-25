@@ -1,3 +1,1 @@
-python -m utils.validate_dataset
 python -m utils.data_cleaner
-python -m utils.split_dataset
