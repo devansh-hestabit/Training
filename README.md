@@ -13,6 +13,7 @@ This repository contains structured training modules organized by week:
 - **Week 5**: Server Side Foundations with Docker & DevOps Basics
 - **Week 6**: Machine Learning Engineering
 - **Week 7**: GENAI & MULTIMODAL RAG ENGINEERING
+- **Week 8**: LLM FINE-TUNING, QUANTISATION & OPTIMISED INFERENCE
 ## Getting Started
 
 Each week contains daily exercises and projects. Navigate to the relevant week folder to find specific learning modules.
@@ -64,5 +65,11 @@ Training/
 │   ├── Day3/ - IMAGE-RAG (MULTIMODAL RAG)
 │   ├── Day4/ - SQL QUESTION ANSWERING SYSTEM (Text → SQL → Answer)
 │   └── Day5/ - ADVANCED RAG + MEMORY + EVALUATION (CAPSTONE)
+├── Week8/
+│   ├── Day1/ - LLM FINE-TUNING
+│   ├── Day2/ - PARAMETER-EFFICIENT FINE-TUNING
+│   ├── Day3/ - QUANTISATION
+│   ├── Day4/ - INFERENCE OPTIMISATION
+│   └── Day5/ - CAPSTONE: BUILD & DEPLOY LOCAL LLM API
 └── README.md
 ```
