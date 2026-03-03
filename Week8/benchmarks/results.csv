@@ -1,0 +1,7 @@
+model,tokens_per_sec,latency_sec,memory_MB,hardware,quantisation,batch
+base_fp16,30.94829,2.591419,2115.505859,GPU,fp16,no
+fine_tuned_fp16,31.524124,2.458435,2115.380859,GPU,fp16,no
+base_fp16_multiprompt,29.160186,2.750325,2115.380859,GPU,fp16,no
+fine_tuned_fp16_multiprompt,31.461692,2.463313,2115.380859,GPU,fp16,no
+base_fp16_batch,109.009001,9.173554,2178.060059,GPU,fp16,yes
+gguf_q8_0,7.3,,1229.0,CPU,q8_0,no
