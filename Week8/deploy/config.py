@@ -1,0 +1,9 @@
+MODEL_PATH = "quantized/model.gguf"
+
+MAX_TOKENS = 256
+TEMPERATURE = 0.7
+TOP_P = 0.9
+TOP_K = 40
+
+CONTEXT_SIZE = 2048
+THREADS = 6
