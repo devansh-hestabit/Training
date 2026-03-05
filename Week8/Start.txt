@@ -1,1 +1,10 @@
 python -m utils.data_cleaner
+
+
+uvicorn deploy.app:app --host 0.0.0.0 --port 8000
+
+
+
+for docker 
+docker build -t local-llm-api .
+docker run -p 8000:8000 local-llm-api
