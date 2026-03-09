@@ -14,6 +14,7 @@ This repository contains structured training modules organized by week:
 - **Week 6**: Machine Learning Engineering
 - **Week 7**: GENAI & MULTIMODAL RAG ENGINEERING
 - **Week 8**: LLM FINE-TUNING, QUANTISATION & OPTIMISED INFERENCE
+- **Week 9**: AGENTIC AI & MULTI-AGENT SYSTEM DESIGN
 ## Getting Started
 
 Each week contains daily exercises and projects. Navigate to the relevant week folder to find specific learning modules.
@@ -71,5 +72,11 @@ Training/
 │   ├── Day3/ - QUANTISATION
 │   ├── Day4/ - INFERENCE OPTIMISATION
 │   └── Day5/ - CAPSTONE: BUILD & DEPLOY LOCAL LLM API
+├── Week9/
+│   ├── Day1/ - AGENTIC AI FUNDAMENTALS
+│   ├── Day2/ - MULTI-AGENT SYSTEM DESIGN
+│   ├── Day3/ - TOOL-CALLING AGENTS
+│   ├── Day4/ - MEMORY SYSTEMS
+│   └── Day5/ - CAPSTONE: AUTONOMOUS MULTI-AGENT AI SYSTEM
 └── README.md
 ```
