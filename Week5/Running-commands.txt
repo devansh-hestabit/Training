@@ -3,7 +3,7 @@ Command -
 docker build -t node-day1 .
 docker run -p 3000:3000 node-day1
 http://localhost:3000/
-
+docker exec -it 16f0cb517236 /bin/sh
 
 Day 2
 Command
