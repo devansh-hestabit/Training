@@ -1,50 +1,30 @@
-from transformers import pipeline
+from autogen_agentchat.agents import AssistantAgent
 
 
-class AnswerAgent:
-    def __init__(self):
+def create_answer_agent(model_client):
 
-        self.model = pipeline(
-            "text-generation",
-            model="TinyLlama/TinyLlama-1.1B-Chat-v1.0",
-            max_new_tokens=200
-        )
+    system_message = """
+You are the Answer Agent.
 
-        self.memory = []
-        self.memory_limit = 10
+Input: a summary from the Summarizer Agent.
 
-        self.system_prompt = """
-You are an Answer Agent.
-
-Your job is to produce the final clear answer
-for the user using the provided summary.
+Your job:
+- Generate the final answer for the user.
+- Explain the topic clearly.
 
 Rules:
-- Provide a clear explanation
-- Use the summary information
-- Do not repeat research notes
+- Use only the provided summary.
+- Do NOT ask questions.
+- Do NOT request more information.
+
+Output format:
+
+FINAL ANSWER
+<clear explanation>
 """
 
-    def update_memory(self, message):
-
-        self.memory.append(message)
-
-        if len(self.memory) > self.memory_limit:
-            self.memory.pop(0)
-
-    def answer(self, summary):
-
-        prompt = f"""
-{self.system_prompt}
-
-Summary:
-{summary}
-
-Final Answer:
-"""
-
-        response = self.model(prompt)[0]["generated_text"]
-
-        self.update_memory("answer generated")
-
-        return response
+    return AssistantAgent(
+        name="answer_agent",
+        model_client=model_client,
+        system_message=system_message,
+    )

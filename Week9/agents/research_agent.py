@@ -1,52 +1,29 @@
-from transformers import pipeline
+from autogen_agentchat.agents import AssistantAgent
 
 
-class ResearchAgent:
+def create_research_agent(model_client):
 
-    def __init__(self):
-
-        self.model = pipeline(
-            "text-generation",
-            model="TinyLlama/TinyLlama-1.1B-Chat-v1.0",
-            max_new_tokens=300
-        )
-
-        self.memory = []
-        self.memory_limit = 10
-
-        self.system_prompt = """
+    system_message = """
 You are a Research Agent.
 
-Your job is to gather detailed factual information
-about a given topic.
+Your job is to gather factual information about the user's query.
 
 Rules:
-- Provide research notes
-- Provide facts and explanations
-- DO NOT summarize
-- DO NOT give a final answer
+- Provide detailed research notes.
+- Include key concepts, mechanisms, and examples.
+- Do NOT summarize the information.
+- Do NOT give the final answer.
+
+Output format:
+
+RESEARCH NOTES
+- point
+- point
+- point
 """
 
-    def update_memory(self, message):
-
-        self.memory.append(message)
-
-        if len(self.memory) > self.memory_limit:
-            self.memory.pop(0)
-
-    def research(self, topic):
-
-        prompt = f"""
-{self.system_prompt}
-
-Topic:
-{topic}
-
-Research Notes:
-"""
-
-        response = self.model(prompt)[0]["generated_text"]
-
-        self.update_memory(topic)
-
-        return response
+    return AssistantAgent(
+        name="research_agent",
+        model_client=model_client,
+        system_message=system_message,
+    )
