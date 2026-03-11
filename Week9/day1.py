@@ -1,62 +1,48 @@
-from agents.research_agent import ResearchAgent
-from agents.summarizer_agent import SummarizerAgent
-from agents.answer_agent import AnswerAgent
+import asyncio
+
+from autogen_agentchat.messages import TextMessage
+
+from config.llm_client import get_model_client
+
+from agents.research_agent import create_research_agent
+from agents.summarizer_agent import create_summarizer_agent
+from agents.answer_agent import create_answer_agent
 
 
-class AgentPipeline:
+async def main():
 
-    def __init__(self):
-        self.research_agent = ResearchAgent()
-        self.summarizer_agent = SummarizerAgent()
-        self.answer_agent = AnswerAgent()
+    model_client = get_model_client()
 
-    def clean_output(self, text, marker):
+    research_agent = create_research_agent(model_client)
+    summarizer_agent = create_summarizer_agent(model_client)
+    answer_agent = create_answer_agent(model_client)
 
-        if marker in text:
-            return text.split(marker)[-1].strip()
+    query = input("Enter your question: ")
 
-        return text.strip()
+    research_result = await research_agent.run(
+        task=TextMessage(content=query, source="user")
+    )
 
-    def run(self, user_query):
+    research_text = research_result.messages[-1].content
+    print("\n--- Research Agent ---\n")
+    print(research_text)
 
-        print("\nUSER QUESTION:")
-        print(user_query)
+    summary_result = await summarizer_agent.run(
+        task=TextMessage(content=research_text, source="research_agent")
+    )
 
-        research_raw = self.research_agent.research(user_query)
+    summary_text = summary_result.messages[-1].content
+    print("\n--- Summary ---\n")
+    print(summary_text)
 
-        research_clean = self.clean_output(
-            research_raw,
-            "Research Notes:"
-        )
+    answer_result = await answer_agent.run(
+        task=TextMessage(content=summary_text, source="summarizer_agent")
+    )
 
-        print("\nResearch Agent Output:")
-        print(research_clean)
-
-        summary_raw = self.summarizer_agent.summarize(research_clean)
-
-        summary_clean = self.clean_output(
-            summary_raw,
-            "Summary:"
-        )
-
-        print("\nSummarizer Agent Output:")
-        print(summary_clean)
-
-        answer_raw = self.answer_agent.answer(summary_clean)
-
-        final_answer = self.clean_output(
-            answer_raw,
-            "Final Answer:"
-        )
-
-        print("\nFINAL ANSWER:")
-        print(final_answer)
+    final_answer = answer_result.messages[-1].content
+    print("\n--- Final Answer ---\n")
+    print(final_answer)
 
 
 if __name__ == "__main__":
-
-    pipeline = AgentPipeline()
-
-    question = input("\nAsk a question: ")
-
-    pipeline.run(question)
+    asyncio.run(main())
