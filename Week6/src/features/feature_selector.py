@@ -22,7 +22,5 @@ def select_features():
     joblib.dump(selector, SELECTOR_PATH)
     return X_train_selected, X_test_selected, y_train, y_test, selected_features
 
-
-
 if __name__ == "__main__":
     select_features()

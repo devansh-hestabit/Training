@@ -31,8 +31,7 @@ def remove_duplicates(df):
 
 def remove_outliers(df):
     numeric_cols = df.select_dtypes(include=[np.number]).columns
-    numeric_cols = [col for col in numeric_cols if col not in ["capital.gain", "capital.loss"]] #exclude capital.gain and capital.loss from outlier removal
-                                                                                                #since they have many zeros and few large values which are valid
+    numeric_cols = [col for col in numeric_cols if col not in ["capital.gain", "capital.loss"]] #exclude capital.gain and capital.loss from outlier removal since they have many zeros and few large values which are valid
 
     for col in numeric_cols:
         Q1 = df[col].quantile(0.25)
