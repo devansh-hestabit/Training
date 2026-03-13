@@ -7,8 +7,6 @@ python -m src.embeddings.embedder
 python -m src.vectorstore.index
 python -m src.app ( Or pass variable in context_builder.py in pipelines)
 
-
-
 Images
 python -m src.pipelines.image_ingest
 python -m src.embeddings.clip_embedder
