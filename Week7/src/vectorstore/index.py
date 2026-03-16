@@ -15,7 +15,7 @@ def build_faiss_index():
 
     embeddings = np.array(embeddings).astype("float32") #FAISS requires float32 format
 
-    dimension = embeddings.shape[1] #number of dimensions in the embedding vectors
+    dimension = embeddings.shape[1] #number of dimensions in the embedding vectors (384 for MiniLM)
     index = faiss.IndexFlatL2(dimension) #L2 distance metric for similarity search for fast indexing and searching
     index.add(embeddings)
 

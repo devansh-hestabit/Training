@@ -8,7 +8,7 @@ CHUNKS_OUTPUT_PATH = "src/data/chunks/chunks.pkl"
 
 os.makedirs("src/data/chunks", exist_ok=True)
 splitter = RecursiveCharacterTextSplitter(
-    chunk_size=700,
+    chunk_size=700, #number of characters
     chunk_overlap=100
 )
 
