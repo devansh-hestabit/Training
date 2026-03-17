@@ -6,12 +6,8 @@ import traceback
 class CodeExecutor:
 
     def __init__(self):
-        # Isolated execution environment
         self.exec_globals = {}
-
     def run_code(self, code: str, context: dict | None = None):
-
-
         if context:
             self.exec_globals.update(context)
 
