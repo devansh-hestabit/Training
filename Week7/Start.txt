@@ -12,9 +12,5 @@ python -m src.pipelines.image_ingest
 python -m src.embeddings.clip_embedder
 python -m src.retriever.image_search (Change query in main function)
 
-
-Sql
-streamlit app_sql.py
-
 Day 5 
 streamlit run app.py
