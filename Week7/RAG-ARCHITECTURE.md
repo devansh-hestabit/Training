@@ -24,7 +24,7 @@ Metadata attached:
 
 ## 3. Chunking Strategy
 
-- Chunk size: 700 tokens
+- Chunk size: 700 characters
 - Overlap: 100 tokens
 
 Rationale:

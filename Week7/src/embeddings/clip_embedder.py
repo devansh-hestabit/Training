@@ -61,7 +61,7 @@ def generate_clip_embeddings():
             return_tensors="pt",
             padding=True,
             truncation=True,
-            max_length=77  
+            max_length=77  #CLIP's maximum token length for text inputs
         ).to(device)
 
         with torch.no_grad():

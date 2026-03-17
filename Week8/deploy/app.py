@@ -1,11 +1,10 @@
 import uuid
 import logging
-from fastapi import FastAPI
-from pydantic import BaseModel
+import streamlit as st
 from typing import List, Dict
-from deploy.model_loader import load_model
-from deploy.config import MAX_TOKENS, TEMPERATURE, TOP_P, TOP_K
 
+from model_loader import load_model
+from config import MAX_TOKENS, TEMPERATURE, TOP_P, TOP_K
 
 logging.basicConfig(
     level=logging.INFO,
@@ -14,38 +13,19 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-app = FastAPI(
-    title="Local LLM API",
-    description="Quantized TinyLlama API for HR analytics",
-    version="1.0"
-)
+@st.cache_resource
+def init_model():
+    logger.info("Loading GGUF model...")
+    model = load_model()
+    logger.info("Model loaded successfully")
+    return model
 
-logger.info("Loading GGUF model...")
+model = init_model()
 
-model = load_model()
-
-logger.info("Model loaded successfully")
-
-class GenerateRequest(BaseModel):
-    prompt: str
-    max_tokens: int = MAX_TOKENS
-    temperature: float = TEMPERATURE
-    top_p: float = TOP_P
-    top_k: int = TOP_K
-
-
-class ChatRequest(BaseModel):
-    system_prompt: str
-    message: str
-    temperature: float = TEMPERATURE
-    top_p: float = TOP_P
-    top_k: int = TOP_K
-    max_tokens: int = MAX_TOKENS
-
-chat_history: List[Dict] = []
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 
 def build_chat_prompt(system_prompt: str, history: List[Dict], message: str):
-
     prompt = f"<|system|>\n{system_prompt}\n"
 
     for turn in history:
@@ -57,69 +37,111 @@ def build_chat_prompt(system_prompt: str, history: List[Dict], message: str):
 
     return prompt
 
-@app.post("/generate")
-def generate(req: GenerateRequest):
+def format_generate_prompt(user_prompt: str):
+    return f"""<|system|>
+You are a professional HR analytics assistant. Give clear, structured and relevant answers only.
 
-    request_id = str(uuid.uuid4())
+<|user|>
+{user_prompt}
 
-    logger.info(f"Generate request received | id={request_id}")
+<|assistant|>
+"""
 
-    output = model(
-        req.prompt,
-        max_tokens=req.max_tokens,
-        temperature=req.temperature,
-        top_p=req.top_p,
-        top_k=req.top_k
+st.set_page_config(page_title="Local LLM UI", layout="wide")
+
+st.title("Local LLM (TinyLlama)")
+st.caption("HR Analytics Assistant")
+
+st.sidebar.header("⚙️ Parameters")
+
+temperature = st.sidebar.slider("Temperature", 0.0, 1.5, 0.3)
+top_p = st.sidebar.slider("Top P", 0.0, 1.0, 0.8)
+top_k = st.sidebar.slider("Top K", 1, 100, 20)
+max_tokens = st.sidebar.slider("Max Tokens", 50, 2048, MAX_TOKENS)
+
+mode = st.sidebar.radio("Mode", ["Chat", "Generate"])
+
+if mode == "Generate":
+    st.subheader("Text Generation")
+
+    prompt = st.text_area("Enter Prompt", height=200)
+
+    if st.button("Generate"):
+        if prompt.strip():
+            request_id = str(uuid.uuid4())
+            logger.info(f"Generate request | id={request_id}")
+
+            formatted_prompt = format_generate_prompt(prompt)
+
+            with st.spinner("Generating..."):
+                output = model(
+                    formatted_prompt,
+                    max_tokens=max_tokens,
+                    temperature=temperature,
+                    top_p=top_p,
+                    top_k=top_k,
+                    stop=["<|user|>", "<|system|>"] 
+                )
+
+            text = output["choices"][0]["text"].strip()
+
+            st.success("Done!")
+            st.text_area("Response", text, height=200)
+
+else:
+    st.subheader("Chat")
+
+    system_prompt = st.text_area(
+        "System Prompt",
+        value="You are a Virtual HR Assistant",
+        height=100
     )
 
-    text = output["choices"][0]["text"]
+    for turn in st.session_state.chat_history:
+        with st.chat_message("user"):
+            st.write(turn["user"])
+        with st.chat_message("assistant"):
+            st.write(turn["assistant"])
 
-    logger.info(f"Generation completed | id={request_id}")
+    user_input = st.chat_input("Type your message...")
 
-    return {
-        "request_id": request_id,
-        "response": text.strip()
-    }
+    if user_input:
+        request_id = str(uuid.uuid4())
+        logger.info(f"Chat request | id={request_id}")
 
-@app.post("/chat")
-def chat(req: ChatRequest):
+        with st.chat_message("user"):
+            st.write(user_input)
 
-    global chat_history
+        prompt = build_chat_prompt(
+            system_prompt,
+            st.session_state.chat_history,
+            user_input
+        )
 
-    request_id = str(uuid.uuid4())
+        with st.spinner("Thinking..."):
+            output = model(
+                prompt,
+                max_tokens=max_tokens,
+                temperature=temperature,
+                top_p=top_p,
+                top_k=top_k,
+                stop=["<|user|>", "<|system|>"] 
+            )
 
-    logger.info(f"Chat request received | id={request_id}")
+        text = output["choices"][0]["text"].strip()
 
-    prompt = build_chat_prompt(
-        req.system_prompt,
-        chat_history,
-        req.message
-    )
+        with st.chat_message("assistant"):
+            st.write(text)
 
-    output = model(
-        prompt,
-        max_tokens=req.max_tokens,
-        temperature=req.temperature,
-        top_p=req.top_p,
-        top_k=req.top_k
-    )
+        st.session_state.chat_history.append({
+            "user": user_input,
+            "assistant": text
+        })
 
-    text = output["choices"][0]["text"].strip()
+        logger.info(
+            f"Chat response | id={request_id} | history={len(st.session_state.chat_history)}"
+        )
 
-    chat_history.append({
-        "user": req.message,
-        "assistant": text
-    })
-
-    logger.info(
-        f"Chat response generated | id={request_id} | history={len(chat_history)}"
-    )
-
-    return {
-        "request_id": request_id,
-        "response": text,
-        "history_length": len(chat_history)
-    }
-@app.get("/health")
-def health():
-    return {"status": "running"}
+    if st.button("Clear Chat"):
+        st.session_state.chat_history = []
+        st.rerun()
