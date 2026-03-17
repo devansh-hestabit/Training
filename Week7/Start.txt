@@ -17,4 +17,4 @@ Sql
 streamlit app_sql.py
 
 Day 5 
-streamlit run streamlit_app.py
+streamlit run app.py

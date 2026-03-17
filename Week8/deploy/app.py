@@ -52,7 +52,7 @@ st.set_page_config(page_title="Local LLM UI", layout="wide")
 st.title("Local LLM (TinyLlama)")
 st.caption("HR Analytics Assistant")
 
-st.sidebar.header("⚙️ Parameters")
+st.sidebar.header("Parameters")
 
 temperature = st.sidebar.slider("Temperature", 0.0, 1.5, 0.3)
 top_p = st.sidebar.slider("Top P", 0.0, 1.0, 0.8)
