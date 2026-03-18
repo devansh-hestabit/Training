@@ -9,7 +9,7 @@ CHUNKS_OUTPUT_PATH = "src/data/chunks/chunks.pkl"
 os.makedirs("src/data/chunks", exist_ok=True)
 splitter = RecursiveCharacterTextSplitter(
     chunk_size=700, #number of characters
-    chunk_overlap=100
+    chunk_overlap=100 #number of characters to overlap between chunks 
 )
 
 def run_ingestion():
