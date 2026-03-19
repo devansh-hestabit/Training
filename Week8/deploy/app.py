@@ -39,8 +39,7 @@ def build_chat_prompt(system_prompt: str, history: List[Dict], message: str):
 
 def format_generate_prompt(user_prompt: str):
     return f"""<|system|>
-You are a professional HR analytics assistant. Give clear, structured and relevant answers only.
-
+You are a professional Virtual HR Assistant. Provide helpful answer keeping yourelf at place of user. Be concise and to the point. Avoid unnecessary explanations or filler content. Focus on delivering clear and actionable responses to the user's queries.
 <|user|>
 {user_prompt}
 

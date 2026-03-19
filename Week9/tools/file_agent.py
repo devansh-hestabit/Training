@@ -3,17 +3,7 @@ import csv
 
 
 class FileAgent:
-    """
-    File Agent
 
-    Responsibilities:
-    - Read .txt files
-    - Read .csv files
-    - Return file contents to orchestrator
-
-    This agent performs deterministic operations
-    and does NOT require an LLM.
-    """
 
     def __init__(self):
         self.supported_types = [".txt", ".csv"]

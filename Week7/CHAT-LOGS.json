@@ -168,5 +168,155 @@
     "confidence": null,
     "faithfulness": null,
     "refined": null
+  },
+  {
+    "timestamp": "2026-03-18T13:25:34.558465",
+    "session_id": "streamlit-user",
+    "mode": "text",
+    "input": "What is role of Electronics in ecommerce sector",
+    "output": "The provided context does not mention the role of electronics in the ecommerce sector. The context appears to be related to a company's business operations, risks, and challenges, particularly in regards to technology, intellectual property, and manufacturing. \n\nHowever, based on general knowledge, electronics play a significant role in the ecommerce sector. They enable online transactions, facilitate digital payments, and provide the infrastructure for ecommerce platforms to operate. Electronics, such as computers, smartphones, and other devices, allow consumers to browse and purchase products online, while also enabling businesses to manage their online stores, process orders, and communicate with customers. \n\nIn the context of the provided text, it can be inferred that the company may be involved in the development of electronic products or technologies, and may be competing with other companies in the industry. However, the specific role of electronics in the ecommerce sector is not mentioned in the context.",
+    "confidence": 1.0,
+    "faithfulness": 0.7,
+    "refined": false
+  },
+  {
+    "timestamp": "2026-03-18T13:26:23.085429",
+    "session_id": "streamlit-user",
+    "mode": "text",
+    "input": "What is name of company",
+    "output": "The name of the company is Celldex Therapeutics, Inc.",
+    "confidence": 1.0,
+    "faithfulness": 1.0,
+    "refined": false
+  },
+  {
+    "timestamp": "2026-03-18T13:29:28.746967",
+    "session_id": "streamlit-user",
+    "mode": "text",
+    "input": "how many lease approval options are there ?",
+    "output": "According to the context, there are options to renew or terminate leases early, but the exact number of lease approval options is not specified. However, it is mentioned that the leases \"may include one or more options to renew or terminate early.\" \n\nIn the provided context, there are multiple amendments to leases, such as:\n\n- First Amendment to Lease\n- Second Amendment to Lease\n- Third Amendment to Lease\n\nThis suggests that there are at least three options or amendments for lease approvals, but the exact number of options is not explicitly stated.",
+    "confidence": 1.0,
+    "faithfulness": 1.0,
+    "refined": false
+  },
+  {
+    "timestamp": "2026-03-18T13:30:26.591341",
+    "session_id": "streamlit-user",
+    "mode": "text",
+    "input": "what are type  of daily use utensils",
+    "output": "The context does not mention the types of daily use utensils. The provided context appears to be related to a company's business operations, financial reports, and equipment used in their research and development activities, such as laboratory equipment, office furniture, and computer equipment.\n\nHowever, based on general knowledge, daily use utensils can include:\n\n1. Kitchen utensils: spoons, forks, knives, plates, bowls, cups, etc.\n2. Dining utensils: napkins, tablecloths, placemats, etc.\n3. Cooking utensils: pots, pans, colanders, spatulas, whisks, etc.\n4. Personal care utensils: toothbrushes, combs, hairbrushes, etc.\n5. Cleaning utensils: brooms, mops, dustpans, etc.\n\nPlease note that this answer is based on general knowledge, as the context does not provide information on daily use utensils.",
+    "confidence": 1.0,
+    "faithfulness": 0.7,
+    "refined": false
+  },
+  {
+    "timestamp": "2026-03-18T13:33:35.211719",
+    "session_id": "streamlit-user",
+    "mode": "image",
+    "input": "Line graph of countries",
+    "output": "The image is likely a line graph, but it doesn't appear to be related to countries. Instead, it features a man climbing up, possibly superimposed over the graph.",
+    "confidence": null,
+    "faithfulness": null,
+    "refined": null
+  },
+  {
+    "timestamp": "2026-03-18T13:34:32.662040",
+    "session_id": "streamlit-user",
+    "mode": "image",
+    "input": "dog",
+    "output": "The image likely contains a dog that is blue in color, wearing a blue collar, and is sitting on a couch.",
+    "confidence": null,
+    "faithfulness": null,
+    "refined": null
+  },
+  {
+    "timestamp": "2026-03-18T13:41:48.265369",
+    "session_id": "streamlit-user",
+    "mode": "text",
+    "input": "what is the name of the company",
+    "output": "The name of the company is Celldex Therapeutics, Inc.",
+    "confidence": 1.0,
+    "faithfulness": 1.0,
+    "refined": false
+  },
+  {
+    "timestamp": "2026-03-18T13:42:28.921807",
+    "session_id": "streamlit-user",
+    "mode": "text",
+    "input": "when was last return filed ?",
+    "output": "According to the context, the company has filed all reports required to be filed by Section 13 or 15(d) of the Securities Exchange Act of 1934 during the preceding 12 months. The specific date of the last return filed is not mentioned in the context. However, it is mentioned that the company is required to file reports pursuant to Section 13 or Section 15(d) of the Act, and the report is for the year ended December 31, 2022. \n\nTherefore, based on the context, the last return filed was for the year ended December 31, 2022.",
+    "confidence": 1.0,
+    "faithfulness": 1.0,
+    "refined": false
+  },
+  {
+    "timestamp": "2026-03-18T13:45:23.230883",
+    "session_id": "streamlit-user",
+    "mode": "image",
+    "input": "Dog",
+    "output": "The image likely contains a dog that is blue in color, wearing a blue collar, and is sitting on a couch.",
+    "confidence": null,
+    "faithfulness": null,
+    "refined": null
+  },
+  {
+    "timestamp": "2026-03-18T13:45:54.532564",
+    "session_id": "streamlit-user",
+    "mode": "image",
+    "input": "cat",
+    "output": "The image likely contains a cat that is laying on the ground.",
+    "confidence": null,
+    "faithfulness": null,
+    "refined": null
+  },
+  {
+    "timestamp": "2026-03-18T13:50:32.462920",
+    "session_id": "streamlit-user",
+    "mode": "sql",
+    "input": "What are the analyutics we get from this data",
+    "output": "**Summary of Key Insights:**\n\nThe provided SQL query result offers a comprehensive overview of a dataset, likely related to demographic and employment information. Here are the key takeaways:\n\n* **Data Scope:** The dataset consists of 32,561 rows, indicating a substantial amount of data.\n* **Demographic Diversity:** The data shows a wide range of ages (73 unique ages), with an average age of approximately 38.6 years. There are also 42 unique native countries, 5 unique races, and 2 unique sexes, highlighting the diversity of the population.\n* **Employment and Education:** The dataset includes 9 unique work classes, 16 unique educations, and 15 unique occupations. The average education level is around 10.08 years, and the average hours worked per week is approximately 40.44 hours.\n* **Financials:** The average capital gain is $1,077.65, while the average capital loss is $87.30. The average income is not explicitly stated, but there are only 2 unique income categories.\n* **Trends and Comparisons:** While no direct comparisons are visible, the data suggests that the population is relatively diverse in terms of age, education, occupation, and native country. The average age and education level indicate a relatively mature and educated workforce.\n\n**Actionable Insights:**\n\n* The diversity of the population, including age, education, and occupation, may require tailored approaches to cater to different demographic groups.\n* The average education level and hours worked per week suggest a relatively skilled and dedicated workforce.\n* The financial data, including capital gain and loss, may indicate opportunities for investment or financial planning strategies.\n\n**Further Analysis:**\n\nTo gain deeper insights, it would be beneficial to explore the data further, such as:\n\n* Analyzing the distribution of ages, educations, and occupations to identify patterns or trends.\n* Investigating the relationship between demographic factors and financial outcomes, such as income or capital gain.\n* Examining the native country distribution to identify potential cultural or regional differences.",
+    "confidence": null,
+    "faithfulness": null,
+    "refined": null
+  },
+  {
+    "timestamp": "2026-03-18T13:54:49.370954",
+    "session_id": "streamlit-user",
+    "mode": "text",
+    "input": "what is the name of company",
+    "output": "Celldex Therapeutics, Inc.",
+    "confidence": 1.0,
+    "faithfulness": 1.0,
+    "refined": false
+  },
+  {
+    "timestamp": "2026-03-18T14:00:02.527044",
+    "session_id": "streamlit-user",
+    "mode": "text",
+    "input": "what is your say about hestabit technolgoies",
+    "output": "There is no mention of \"Hestabit Technologies\" in the provided context. The context appears to be related to Celldex Therapeutics, Inc. and its drug candidates, such as barzolvolimab, and discusses various risks and challenges associated with the development and commercialization of these candidates.\n\nAs the information about \"Hestabit Technologies\" is not present in the context, I would rely on general knowledge to provide an answer. However, I couldn't find any information about a company or technology called \"Hestabit Technologies\" in my general knowledge database. It's possible that it's a fictional or non-existent entity, or it may be a real company that is not well-known. If you could provide more context or information about \"Hestabit Technologies\", I may be able to help you better.",
+    "confidence": 1.0,
+    "faithfulness": 0.7,
+    "refined": false
+  },
+  {
+    "timestamp": "2026-03-18T14:02:53.010726",
+    "session_id": "streamlit-user",
+    "mode": "text",
+    "input": "what is the name of the company",
+    "output": "The name of the company is Celldex Therapeutics, Inc.",
+    "confidence": 1.0,
+    "faithfulness": 1.0,
+    "refined": false
+  },
+  {
+    "timestamp": "2026-03-18T14:04:31.310579",
+    "session_id": "streamlit-user",
+    "mode": "text",
+    "input": "what is the daily life utensils",
+    "output": "The provided context does not mention \"daily life utensils\" at all. It appears to be a collection of excerpts from a company's financial or operational report, discussing topics such as contract manufacturing, research and development, intangible assets, employee engagement, and financial accounting practices. Therefore, it is not possible to provide an answer to the question about \"daily life utensils\" based on the given context.",
+    "confidence": 0.13,
+    "faithfulness": 0.1,
+    "refined": true
   }
 ]
