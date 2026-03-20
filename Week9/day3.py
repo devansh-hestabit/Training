@@ -48,6 +48,7 @@ Rules:
 2. DO NOT generate explanations.
 3. ONLY return a JSON tool plan.
 4. Always follow the format below.
+5. Always include exact file names in tasks when files are created or modified.
 
 Output format:
 
@@ -86,6 +87,7 @@ df = pd.DataFrame(file_data["rows"])
 6. NEVER recreate the dataset manually.
 7. Only operate on the provided dataset.
 8. Always print the results.
+9. If task involves creating or modifying a dataset, ALWAYS save it to a CSV file with appropriate name.
 
 Output ONLY python code.
 """
@@ -154,6 +156,12 @@ async def main():
             print(f"\nRunning FILE_AGENT on {file_path}\n")
 
             file_data = file_agent.read_file(file_path)
+            if isinstance(file_data, str) and file_data.startswith("ERROR"):
+                print("\n--- FILE ERROR ---\n")
+                print(file_data)
+        
+                final_output = file_data
+                break
 
             print("File loaded")
             if isinstance(file_data, dict):

@@ -105,7 +105,7 @@ elif st.session_state.mode_id == "image":
             )
             st.subheader("Image Description")
             st.write(result["description"])
-            st.caption(f"Similarity score: {round(result['score'], 3)}")
+            # st.caption(f"Similarity score: {round(result['score'], 3)}")
         else:
             st.error("No image found.")
 

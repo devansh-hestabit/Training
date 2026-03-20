@@ -9,15 +9,10 @@ class FileAgent:
         self.supported_types = [".txt", ".csv"]
 
     def read_file(self, file_path: str):
-        """
-        Reads a file and returns its content.
-        """
-
         if not os.path.exists(file_path):
             return f"ERROR: File '{file_path}' not found."
 
         extension = os.path.splitext(file_path)[1]
-
         if extension not in self.supported_types:
             return f"ERROR: Unsupported file type '{extension}'."
 
@@ -31,24 +26,44 @@ class FileAgent:
         with open(file_path, "r", encoding="utf-8") as file:
             return file.read()
 
+    def _convert_value(self, value):
+        # Try int
+        try:
+            return int(value)
+        except:
+            pass
+        
+        # Try float
+        try:
+            return float(value)
+        except:
+            pass
+        
+        # Otherwise keep as string
+        return value
+    
+    
     def _read_csv(self, file_path: str):
         rows = []
-
+    
         with open(file_path, "r", encoding="utf-8") as csv_file:
             reader = csv.DictReader(csv_file)
-
+    
             for row in reader:
-                rows.append(row)
-
+                # ✅ Convert each value
+                converted_row = {
+                    key: self._convert_value(value)
+                    for key, value in row.items()
+                }
+                rows.append(converted_row)
+    
         return {
             "columns": reader.fieldnames,
             "row_count": len(rows),
-            "rows": rows[:20]  # limit preview for safety
+            "rows": rows[:20]  # preview
         }
 
 
 def create_file_agent():
-    """
-    Factory method for consistency with your architecture.
-    """
+
     return FileAgent()
