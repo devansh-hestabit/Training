@@ -2,3 +2,6 @@ python -m venv venv
 source venv/bin/activate
 python -m day1
 python -m day2
+python -m day3
+python -m day4
+python -m nexus_ai.main
