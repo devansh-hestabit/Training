@@ -86,5 +86,5 @@ Example:
 User Query ↓ Research Agent (collects information) ↓ Summarizer Agent
 (extracts key insights) ↓ Answer Agent (generates final explanation)
 
-This design ensures **clear separation of responsibilities**.
+This design ensures clear separation of responsibilities.
 

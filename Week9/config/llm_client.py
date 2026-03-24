@@ -12,7 +12,7 @@ def get_model_client():
         api_key=os.getenv("GROQ_API_KEY"),
         temperature=0.2,
         model_info={
-            "vision": False,
+            "vision": False, # no images
             "function_calling": True,
             "json_output": True,
             "structured_output": True,

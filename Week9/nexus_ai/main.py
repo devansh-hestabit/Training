@@ -1,5 +1,3 @@
-# /nexus_ai/main.py
-
 import asyncio
 import json
 import re
@@ -18,26 +16,17 @@ from nexus_ai.agents.critic import create_critic_agent
 from nexus_ai.agents.optimizer import create_optimizer_agent
 from nexus_ai.agents.validator import create_validator_agent
 from nexus_ai.agents.reporter import create_reporter_agent
-
-# 🔧 TOOLS (Day 3)
 from tools.code_executor import CodeExecutor
 from tools.db_agent import DBAgent
 
-
-# ---------------- CONFIG ---------------- #
-
 MAX_CONTEXT = 2000
 
-
-# ---------------- LOGGING ---------------- #
 
 def log(message: str):
     os.makedirs("logs", exist_ok=True)
     with open("logs/nexus.log", "a") as f:
         f.write(f"{datetime.now()} | {message}\n")
 
-
-# ---------------- JSON PARSER ---------------- #
 
 def extract_json(text):
     match = re.search(r"\{.*\}", text, re.DOTALL)
@@ -46,14 +35,11 @@ def extract_json(text):
     raise ValueError("Invalid planner output")
 
 
-# ---------------- CORE PIPELINE ---------------- #
-
 async def run_nexus(query):
 
     config = create_config()
     model_client = config.get_model()
 
-    # 🤖 Agents
     planner = create_planner_agent(model_client)
     researcher = create_researcher_agent(model_client)
     coder = create_coder_agent(model_client)
@@ -69,16 +55,13 @@ async def run_nexus(query):
         "analyst": analyst
     }
 
-    # 🛠 Tools
     code_executor = CodeExecutor()
     db_agent_tool = DBAgent()
 
     log(f"USER QUERY: {query}")
 
     try:
-
-        # ---------------- PLANNING ---------------- #
-        print("\n🧠 Planning...\n")
+        print("\nPlanning...\n")
 
         plan_result = await planner.run(
             task=TextMessage(content=query, source="user")
@@ -92,17 +75,15 @@ async def run_nexus(query):
         steps = plan["steps"]
         use_reflection = plan.get("reflection", False)
 
-        print("📋 EXECUTION PLAN:\n")
+        print("EXECUTION PLAN:\n")
         for i, step in enumerate(steps, 1):
             tool = step.get("tool", "none")
             print(f"{i}. [{step['agent'].upper()}] → {step['task']} (tool: {tool})")
 
-        print(f"\n🧠 Reflection Enabled: {use_reflection}")
+        print(f"\n Reflection Enabled: {use_reflection}")
         print("-" * 60)
 
         context = query
-
-        # ---------------- EXECUTION ---------------- #
         for i, step in enumerate(steps, 1):
 
             agent_name = step["agent"]
@@ -116,8 +97,6 @@ async def run_nexus(query):
 
             print(f"\n⚙️ Step {i}: {agent_name.upper()} running...")
             print(f"📝 Task: {task}\n")
-
-            # 🧠 Agent reasoning
             step_input = f"""
 Context:
 {context[-1000:]}
@@ -132,31 +111,28 @@ Task:
 
             agent_output = result.messages[-1].content
 
-            print(f"🧠 AGENT OUTPUT:\n{agent_output}\n")
-            # safety override
+            print(f" AGENT OUTPUT:\n{agent_output}\n")
             if tool_name == "file_agent" and "import" in agent_output:
-                print("⚠️ Switching to code_executor (detected Python code)")
+                print(" Switching to code_executor (detected Python code)")
                 tool_name = "code_executor"
 
-            # ---------------- TOOL EXECUTION ---------------- #
             tool_output = None
 
-            # 🔥 AUTO TOOL DETECTION (NO TRUST ON PLANNER)
             if "import " in agent_output or "def " in agent_output or "pd." in agent_output:
                 tool_name = "code_executor"
             
             if tool_name == "code_executor":
-                print("🛠 Executing Python Code...\n")
+                print("Executing Python Code...\n")
             
                 tool_output = code_executor.run_code(agent_output)
             
-                # 🔁 SELF-HEALING LOOP
+                # self healing
                 retry_count = 0
                 max_retries = 2
             
                 while "Traceback" in str(tool_output) and retry_count < max_retries:
                 
-                    print("⚠️ Error detected. Attempting to fix...\n")
+                    print("Error detected. Attempting to fix...\n")
             
                     fix_prompt = f"""
             The following Python code failed:
@@ -180,20 +156,19 @@ Task:
             
                     agent_output = fix_result.messages[-1].content
             
-                    print("🔁 RETRYING WITH FIXED CODE...\n")
+                    print("RETRYING WITH FIXED CODE...\n")
             
                     tool_output = code_executor.run_code(agent_output)
             
                     retry_count += 1
 
             elif tool_name == "db_agent":
-                print("🛠 Querying Database...\n")
+                print("Querying Database...\n")
                 tool_output = db_agent_tool.query(agent_output)
 
-            # ---------------- MERGE ---------------- #
             final_output = tool_output if tool_output else agent_output
 
-            print(f"📤 FINAL STEP OUTPUT:\n{final_output}\n")
+            print(f"FINAL STEP OUTPUT:\n{final_output}\n")
 
             log(f"{agent_name.upper()} OUTPUT: {final_output}")
 
@@ -204,7 +179,6 @@ Task:
 
             print("-" * 60)
 
-        # ---------------- REFLECTION ---------------- #
         if use_reflection:
 
             print("\n🧪 Reflection Phase Enabled\n")
@@ -213,15 +187,14 @@ Task:
                 task=TextMessage(content=context[-1000:], source="system")
             )).messages[-1].content
 
-            print("📌 CRITIQUE:\n", critique, "\n")
+            print("CRITIQUE:\n", critique, "\n")
 
             validation = (await validator.run(
                 task=TextMessage(content=context[-1000:], source="critic")
             )).messages[-1].content
 
-            print("✔ VALIDATION:\n", validation, "\n")
+            print(" VALIDATION:\n", validation, "\n")
 
-            # Only improve if needed
             if "IMPROVE" in validation.upper():
 
                 optimized = (await optimizer.run(
@@ -238,17 +211,13 @@ Critique:
                     )
                 )).messages[-1].content
 
-                print("🚀 IMPROVEMENTS:\n", optimized, "\n")
+                print("IMPROVEMENTS:\n", optimized, "\n")
 
-                # ✅ Append, don't replace
+
                 context += f"\n[IMPROVEMENTS]\n{optimized}"
 
-        # ---------------- FINAL OUTPUT ---------------- #
-        
 
-        # ---------------- REPORTER ---------------- #
-
-        print("\n🧾 Generating Final Report...\n")
+        print("\nGenerating Final Report...\n")
 
         report_input = f"""
         You are given execution logs from multiple agents.
@@ -268,7 +237,7 @@ Critique:
 
         final_output = report_result.messages[-1].content
 
-        print("🎉 FINAL OUTPUT READY\n")
+        print("FINAL OUTPUT READY\n")
 
         log(f"FINAL OUTPUT: {final_output}")
 
@@ -276,14 +245,11 @@ Critique:
 
     except Exception as e:
         log(f"ERROR: {str(e)}")
-        return f"❌ Error: {str(e)}"
-
-
-# ---------------- CLI ---------------- #
+        return f"Error: {str(e)}"
 
 async def main():
 
-    print("\n🚀 NEXUS AI READY (type 'exit' to quit)\n")
+    print("\n NEXUS AI READY (type 'exit' to quit)\n")
 
     while True:
 
@@ -295,7 +261,6 @@ async def main():
         result = await run_nexus(query)
 
         print("\nNEXUS AI:\n", result, "\n")
-
 
 if __name__ == "__main__":
     asyncio.run(main())
