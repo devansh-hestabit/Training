@@ -1,26 +1,18 @@
-# /memory/vector_store.py
-
 import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
-
 
 class VectorStore:
 
     def __init__(self, dim: int = 384):
         self.model = SentenceTransformer("all-MiniLM-L6-v2")
         self.dim = dim
-
-        # FAISS index (L2 distance)
         self.index = faiss.IndexFlatL2(dim)
 
-        # Store original texts
         self.texts = []
 
     def clear(self):
-        """
-        Reset vector memory
-        """
+
         self.index.reset()
         self.texts = []
 

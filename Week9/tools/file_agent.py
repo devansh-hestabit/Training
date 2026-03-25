@@ -4,7 +4,6 @@ import csv
 
 class FileAgent:
 
-
     def __init__(self):
         self.supported_types = [".txt", ".csv"]
 
@@ -27,19 +26,17 @@ class FileAgent:
             return file.read()
 
     def _convert_value(self, value):
-        # Try int
+
         try:
             return int(value)
         except:
             pass
-        
-        # Try float
+
         try:
             return float(value)
         except:
             pass
         
-        # Otherwise keep as string
         return value
     
     
@@ -47,10 +44,9 @@ class FileAgent:
         rows = []
     
         with open(file_path, "r", encoding="utf-8") as csv_file:
-            reader = csv.DictReader(csv_file)
+            reader = csv.DictReader(csv_file) #convert each row into dictionary
     
             for row in reader:
-                # ✅ Convert each value
                 converted_row = {
                     key: self._convert_value(value)
                     for key, value in row.items()

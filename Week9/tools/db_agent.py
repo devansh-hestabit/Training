@@ -35,7 +35,6 @@ class DBAgent:
                     "rows": results[:50]  # safety limit
                 }
 
-            # For INSERT/UPDATE/DELETE
             else:
                 self.connection.commit()
                 return "Query executed successfully."

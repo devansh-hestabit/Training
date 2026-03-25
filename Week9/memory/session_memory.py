@@ -14,12 +14,9 @@ class SessionMemory:
         })
 
     def get_context(self):
-
         context = ""
-
         for msg in self.memory:
             context += f"{msg['role'].upper()}: {msg['content']}\n"
-
         return context.strip()
 
     def clear(self):
@@ -29,7 +26,5 @@ class SessionMemory:
     def get_all(self):
         return list(self.memory)
 
-
 def create_session_memory(max_messages: int = 10):
-
     return SessionMemory(max_messages=max_messages)
