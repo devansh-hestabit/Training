@@ -9,7 +9,6 @@ from memory.session_memory import create_session_memory
 from memory.vector_store import create_vector_store
 from memory.long_term import create_long_term_memory
 
-
 def create_memory_agent(model_client):
 
     system_message = """
@@ -35,8 +34,6 @@ Rules:
 
 
 async def main():
-
-    # Initialize components
     model_client = get_model_client()
 
     agent = create_memory_agent(model_client)
@@ -45,7 +42,7 @@ async def main():
     vector_store = create_vector_store()
     long_term_memory = create_long_term_memory()
 
-    print("\n🧠 Memory Agent Ready (type 'exit' to quit)\n")
+    print("\nMemory Agent Ready (type 'exit' to quit)\n")
 
     while True:
 
@@ -59,21 +56,17 @@ async def main():
             vector_store.clear()
             session_memory.clear()
         
-            print("🧠 All memory cleared!\n")
+            print("All memory cleared!\n")
             continue
 
-        # 1️⃣ Search vector memory
         similar_memories = vector_store.search(query)
 
-        # 2️⃣ Get session context
         session_context = session_memory.get_context()
 
-        # 3️⃣ Get long-term memory
         long_term = long_term_memory.get_all(limit=5)
 
         long_term_text = "\n".join([m[0] for m in long_term])
 
-        # 4️⃣ Build final prompt
         final_prompt = f"""
 RELEVANT MEMORY:
 {similar_memories}
@@ -88,7 +81,6 @@ USER QUERY:
 {query}
 """
 
-        # 5️⃣ Get response from LLM
         result = await agent.run(
             task=TextMessage(content=final_prompt, source="user")
         )
@@ -97,20 +89,16 @@ USER QUERY:
 
         print("\nAssistant:", response, "\n")
 
-        # 6️⃣ Store in session memory
         session_memory.add("user", query)
         session_memory.add("assistant", response)
 
-        # 7️⃣ Store in vector memory
         vector_store.add(query)
         vector_store.add(response)
 
-        # 8️⃣ Store summarized user facts
         if "i am" in query.lower() or "i prefer" in query.lower() or "i like" in query.lower():
             fact = await summarize_fact(model_client, query)
             long_term_memory.add(fact, "fact")
 
-        # 9️⃣ Store summarized assistant responses
         if len(response) < 200:
             summary = await summarize_fact(model_client, response)
             long_term_memory.add(summary, "summary")

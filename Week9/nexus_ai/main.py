@@ -76,6 +76,7 @@ async def run_nexus(query):
         use_reflection = plan.get("reflection", False)
 
         print("EXECUTION PLAN:\n")
+        unsafe_detected = False 
         for i, step in enumerate(steps, 1):
             tool = step.get("tool", "none")
             print(f"{i}. [{step['agent'].upper()}] → {step['task']} (tool: {tool})")
@@ -118,19 +119,29 @@ Task:
 
             tool_output = None
 
-            if "import " in agent_output or "def " in agent_output or "pd." in agent_output:
+            if tool_name is None and any(k in agent_output for k in ["import ", "def ", "pd."]):
                 tool_name = "code_executor"
             
             if tool_name == "code_executor":
                 print("Executing Python Code...\n")
-            
-                tool_output = code_executor.run_code(agent_output)
+                # 🚨 BLOCK HEAVY ML / DOWNLOADS
+                dangerous_keywords = [
+                    "torch", "transformers", "huggingface",
+                     "model.", "AutoModel",
+                ]
+
+                if any(k in agent_output.lower() for k in dangerous_keywords):
+                    print("⚠️ Blocked unsafe ML execution")
+                    tool_output = "BLOCKED_UNSAFE_EXECUTION"
+                    unsafe_detected = True
+                else:
+                    tool_output = code_executor.run_code(agent_output)
             
                 # self healing
                 retry_count = 0
                 max_retries = 2
             
-                while "Traceback" in str(tool_output) and retry_count < max_retries:
+                while (not unsafe_detected) and "Traceback" in str(tool_output) and retry_count < max_retries:
                 
                     print("Error detected. Attempting to fix...\n")
             
@@ -166,18 +177,25 @@ Task:
                 print("Querying Database...\n")
                 tool_output = db_agent_tool.query(agent_output)
 
-            final_output = tool_output if tool_output else agent_output
+            if unsafe_detected:
+                final_output = "[SKIPPED: Unsafe execution blocked]"
+            else:
+                final_output = tool_output if tool_output else agent_output
 
             print(f"FINAL STEP OUTPUT:\n{final_output}\n")
 
             log(f"{agent_name.upper()} OUTPUT: {final_output}")
 
-            context += f"\n[{agent_name.upper()}]\n{final_output}"
+            if not unsafe_detected:
+                context += f"\n[{agent_name.upper()}]\n{final_output}"
 
             if len(context) > MAX_CONTEXT:
                 context = context[-MAX_CONTEXT:]
 
             print("-" * 60)
+
+        if unsafe_detected:
+            use_reflection = False
 
         if use_reflection:
 

@@ -62,8 +62,21 @@ Your job:
 - DO NOT assume file_data exists
 - DO NOT split logic across multiple outputs
 - DO NOT leave code incomplete
+- DO NOT wrap code inside main()
+- DO NOT use if __name__ == "__main__"
+- Write directly executable code
 
 ---
+
+🚫 DO NOT:
+- download models
+- create large datasets
+- simulate real-world pipelines
+
+✔ ONLY:
+- small scripts
+- lightweight execution
+
 
 ⚠️ ERROR HANDLING:
 

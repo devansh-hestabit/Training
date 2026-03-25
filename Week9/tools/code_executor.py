@@ -45,6 +45,7 @@ class CodeExecutor:
             code = clean_code(code)
 
             # Execute code
+            self.exec_globals["__name__"] = "__main__"
             exec(code, self.exec_globals)
 
             # Capture output
@@ -53,6 +54,8 @@ class CodeExecutor:
             # If nothing printed, return explicit message
             if not output.strip():
                 output = "[No output returned from code execution]"
+
+            
 
         except Exception:
             output = traceback.format_exc()

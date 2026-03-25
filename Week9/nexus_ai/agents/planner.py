@@ -48,6 +48,17 @@ Use:
 
 ---
 
+🚫 NEVER use coder for:
+- system design
+- architecture
+- pipelines
+- RAG systems
+- high-level engineering tasks
+
+These are THINKING tasks, not execution tasks
+
+---
+
 ⚠️ HARD CONSTRAINTS (STRICT):
 
 1. CODER USAGE:
