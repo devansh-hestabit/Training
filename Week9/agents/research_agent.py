@@ -1,4 +1,5 @@
 from autogen_agentchat.agents import AssistantAgent
+from autogen_core.model_context import BufferedChatCompletionContext
 
 
 def create_research_agent(model_client):
@@ -22,8 +23,11 @@ RESEARCH NOTES
 - point
 """
 
+    context = BufferedChatCompletionContext(buffer_size=10)
+
     return AssistantAgent(
         name="research_agent",
         model_client=model_client,
         system_message=system_message,
+        model_context=context,
     )

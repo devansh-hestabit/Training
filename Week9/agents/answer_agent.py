@@ -1,4 +1,5 @@
 from autogen_agentchat.agents import AssistantAgent
+from autogen_core.model_context import BufferedChatCompletionContext
 
 
 def create_answer_agent(model_client):
@@ -23,8 +24,11 @@ FINAL ANSWER
 <clear explanation>
 """
 
+    context = BufferedChatCompletionContext(buffer_size=10)
+
     return AssistantAgent(
         name="answer_agent",
         model_client=model_client,
         system_message=system_message,
+        model_context=context,
     )

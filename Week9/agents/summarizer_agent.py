@@ -1,4 +1,5 @@
 from autogen_agentchat.agents import AssistantAgent
+from autogen_core.model_context import BufferedChatCompletionContext
 
 
 def create_summarizer_agent(model_client):
@@ -25,8 +26,11 @@ SUMMARY
 - key idea
 """
 
+    context = BufferedChatCompletionContext(buffer_size=10)
+
     return AssistantAgent(
         name="summarizer_agent",
         model_client=model_client,
         system_message=system_message,
+        model_context=context,
     )

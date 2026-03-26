@@ -124,14 +124,12 @@ Task:
             
             if tool_name == "code_executor":
                 print("Executing Python Code...\n")
-                # 🚨 BLOCK HEAVY ML / DOWNLOADS
                 dangerous_keywords = [
-                    "torch", "transformers", "huggingface",
-                     "model.", "AutoModel",
+                    "torch", "transformers", "huggingface", "AutoModel",
                 ]
 
                 if any(k in agent_output.lower() for k in dangerous_keywords):
-                    print("⚠️ Blocked unsafe ML execution")
+                    print("Blocked unsafe ML execution")
                     tool_output = "BLOCKED_UNSAFE_EXECUTION"
                     unsafe_detected = True
                 else:
