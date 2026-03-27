@@ -1,10 +1,7 @@
 import asyncio
-
 from autogen_agentchat.messages import TextMessage
 from autogen_agentchat.agents import AssistantAgent
-
 from config.llm_client import get_model_client
-
 from memory.session_memory import create_session_memory
 from memory.vector_store import create_vector_store
 from memory.long_term import create_long_term_memory
@@ -32,12 +29,10 @@ Rules:
         system_message=system_message,
     )
 
-
 async def main():
+    
     model_client = get_model_client()
-
     agent = create_memory_agent(model_client)
-
     session_memory = create_session_memory(max_messages=10)
     vector_store = create_vector_store()
     long_term_memory = create_long_term_memory()
@@ -47,7 +42,6 @@ async def main():
     while True:
 
         query = input("User: ")
-
         if query.lower() in ["exit", "quit", "close"]:
             break
         
@@ -60,11 +54,8 @@ async def main():
             continue
 
         similar_memories = vector_store.search(query)
-
         session_context = session_memory.get_context()
-
         long_term = long_term_memory.get_all(limit=5)
-
         long_term_text = "\n".join([m[0] for m in long_term])
 
         final_prompt = f"""
@@ -80,15 +71,12 @@ SESSION CONTEXT:
 USER QUERY:
 {query}
 """
-
         result = await agent.run(
             task=TextMessage(content=final_prompt, source="user")
         )
 
         response = result.messages[-1].content
-
         print("\nAssistant:", response, "\n")
-
         session_memory.add("user", query)
         session_memory.add("assistant", response)
 
@@ -131,7 +119,6 @@ Output: User prefers fashion products
     )
 
     return result.messages[-1].content.strip()
-
 
 if __name__ == "__main__":
     asyncio.run(main())

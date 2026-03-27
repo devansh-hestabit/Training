@@ -1,11 +1,8 @@
 import asyncio
 import json
-
 from autogen_agentchat.messages import TextMessage
-
 from config.llm_client import get_model_client
 from autogen_agentchat.agents import AssistantAgent
-
 from tools.file_agent import create_file_agent
 from tools.code_executor import create_code_executor
 from tools.db_agent import create_db_agent
@@ -13,15 +10,13 @@ from tools.db_agent import create_db_agent
 def clean_code(code: str):
     code = code.strip()
 
-    # Remove ```python or ``` wrappers
+    #remove ```
     if code.startswith("```"):
         code = code.split("```")[1]
-
         if code.startswith("python"):
             code = code[len("python"):]
 
     code = code.replace("```", "").strip()
-
     return code
 
 def create_tool_orchestrator(model_client):
@@ -59,13 +54,11 @@ Output format:
  ]
 }
 """
-
     return AssistantAgent(
         name="tool_orchestrator",
         model_client=model_client,
         system_message=system_message,
     )
-
 
 async def generate_python_code(model_client, task, file_data):
 
@@ -105,20 +98,15 @@ Write python code to complete the task.
     result = await generator.run(
         task=TextMessage(content=prompt, source="tool")
     )
-
     return result.messages[-1].content
-
 
 async def main():
 
     model_client = get_model_client()
-
     orchestrator = create_tool_orchestrator(model_client)
-
     file_agent = create_file_agent()
     code_executor = create_code_executor()
     db_agent = create_db_agent()
-
     query = input("Enter request: ")
 
     plan_result = await orchestrator.run(
@@ -126,8 +114,7 @@ async def main():
     )
 
     plan_text = plan_result.messages[-1].content
-
-    print("\n--- TOOL PLAN ---\n")
+    print("\n TOOL PLAN \n")
     print(plan_text)
 
     # Clean LLM response
@@ -139,7 +126,6 @@ async def main():
         if plan_text.startswith("json"):
             plan_text = plan_text[4:]
         plan_text = plan_text.strip()
-
     plan = json.loads(plan_text)
 
     file_data = None
@@ -148,16 +134,14 @@ async def main():
     for step in plan["steps"]:
 
         tool = step["tool"]
-
         if tool == "file_agent":
 
             file_path = step["input"]
-
             print(f"\nRunning FILE_AGENT on {file_path}\n")
 
             file_data = file_agent.read_file(file_path)
             if isinstance(file_data, str) and file_data.startswith("ERROR"):
-                print("\n--- FILE ERROR ---\n")
+                print("\n FILE ERROR \n")
                 print(file_data)
         
                 final_output = file_data
@@ -172,7 +156,6 @@ async def main():
                 formatted_rows = "\n".join(
         [", ".join(str(v) for v in row.values()) for row in rows]
     )
-
                 final_output = f"""
 Columns: {columns}
 Total Rows: {file_data['row_count']}
@@ -180,49 +163,36 @@ Total Rows: {file_data['row_count']}
 First 10 Rows:
 {formatted_rows}
 """
-
         elif tool == "code_executor":
-
             task = step["task"]
-
             print("\nGenerating Python Code...\n")
-
             python_code = await generate_python_code(
                 model_client,
                 task,
                 file_data
             )
             python_code = clean_code(python_code)
-
-            print("--- GENERATED CODE ---\n")
+            print(" GENERATED CODE \n")
             print(python_code)
 
             final_output = code_executor.run_code(
                 python_code,
                 context={"file_data": file_data}
             )
-
-            print("\n--- CODE OUTPUT ---\n")
+            print("\n CODE OUTPUT \n")
             print(final_output)
 
         elif tool == "db_agent":
-
             db_path = step["db"]
-
             query = step["query"]
-
             db_agent.connect(db_path)
-
             result = db_agent.execute_query(query)
-
-            print("\n--- DB OUTPUT ---\n")
+            print("\n DB OUTPUT \n")
             print(result)
-
             final_output = result
 
-    print("\n--- FINAL RESULT ---\n")
+    print("\n FINAL RESULT \n")
     print(final_output)
-
 
 if __name__ == "__main__":
     asyncio.run(main())

@@ -1,14 +1,10 @@
 import asyncio
-
 from autogen_agentchat.messages import TextMessage
-
 from config.llm_client import get_model_client
-
 from orchestrator.planner import create_planner
 from agents.worker_agent import create_worker_agent
 from agents.reflection_agent import create_reflection_agent
 from agents.validator import create_validator_agent
-
 
 async def main():
 
@@ -26,7 +22,7 @@ async def main():
     )
 
     plan = plan_result.messages[-1].content
-    print("\n--- PLAN ---\n")
+    print("\n PLAN \n")
     print(plan)
 
     worker_result = await worker.run(
@@ -34,7 +30,7 @@ async def main():
     )
 
     worker_output = worker_result.messages[-1].content
-    print("\n--- WORKER OUTPUT ---\n")
+    print("\n WORKER OUTPUT \n")
     print(worker_output)
 
     reflection_result = await reflection.run(
@@ -42,7 +38,7 @@ async def main():
     )
 
     reflection_output = reflection_result.messages[-1].content
-    print("\n--- REFLECTION ---\n")
+    print("\n REFLECTION \n")
     print(reflection_output)
 
     validator_result = await validator.run(
@@ -50,7 +46,7 @@ async def main():
     )
 
     final_answer = validator_result.messages[-1].content
-    print("\n--- FINAL ANSWER ---\n")
+    print("\n FINAL ANSWER \n")
     print(final_answer)
 
 if __name__ == "__main__":
