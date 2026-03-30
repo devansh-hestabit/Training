@@ -1,6 +1,5 @@
 import sqlite3
 
-
 class DBAgent:
     def __init__(self):
         self.connection = None
