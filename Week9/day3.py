@@ -119,10 +119,8 @@ async def main():
     print("\n TOOL PLAN \n")
     print(plan_text)
 
-    # Clean LLM response
     plan_text = plan_text.strip()
 
-    # Remove markdown code fences if present
     if plan_text.startswith("```"):
         plan_text = plan_text.split("```")[1]
         if plan_text.startswith("json"):

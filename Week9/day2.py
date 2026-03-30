@@ -31,7 +31,7 @@ async def run_workers_parallel(model_client, tasks):
             return f"WORK RESULT\n- Error: {str(e)}"
 
     results = await asyncio.gather(
-        *[run_task(w, t) for w, t in zip(workers, tasks)]
+        *[run_task(w, t) for w, t in zip(workers, tasks)] #for each task, run a worker in paralle
     )
 
     return results
@@ -51,7 +51,7 @@ async def main():
     plan_result = await planner.run(
         task=TextMessage(content=query, source="user")
     )
-    
+
     plan = plan_result.messages[-1].content
     print("\n PLAN \n")
     print(plan)
