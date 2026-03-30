@@ -37,6 +37,8 @@ code_executor
 
 db_agent
 - runs SQL queries
+- REQUIRED FORMAT:
+  {"tool":"db_agent","db":"database.db","query":"SQL query"}
 
 Rules:
 1. DO NOT generate Python code.
