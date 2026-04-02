@@ -1,0 +1,126 @@
+
+Note:
+The original bug (todo list cleared) was introduced in Commit 4.
+However, subsequent commits added new tasks, masking the bug.
+As a result, git bisect identified Commit 8 as the first observable bad commit
+based on the chosen test condition.
+
+
+
+
+Script started on 2026-01-07 11:22:38+05:30 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="72" LINES="39"]
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ git bisect start
+[?2004l
+status: waiting for both good and bad commits
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ git bisex[Kct bad h[KHEAD
+[?2004l
+status: waiting for good commit(s), bad commit known
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ git bisectr [K[K good 7548efb
+[?2004l
+Bisecting: 2 revisions left to test after this (roughly 1 step)
+[1b4d8eebef8c7c647c7b57846237354e0ce2f2b7] Commit 5: add call mom task
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ car[Kt ti[Kodo.txt
+[?2004l
+
+Call mom
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ git bie[Ksect good
+[?2004l
+Bisecting: 0 revisions left to test after this (roughly 1 step)
+[14b6d537cd7b3c904ec45eeda39b2b0d17603e28] Commit 7: add weekend planning
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ git t[K[K[K[K[Kgit bisect good[3Pcat todo.txt
+[?2004l
+
+Call mom
+Read book
+Plan weekend
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ git bisecrt [K[K[Kt goof[Kd
+[?2004l
+d22284fa26dd2559ec759d78b87573f03309de54 is the first bad commit
+[33mcommit d22284fa26dd2559ec759d78b87573f03309de54[m
+Author: devansh-hestabit <devansh.hestabit@gmail.com>
+Date:   Tue Jan 6 18:20:51 2026 +0530
+
+    Commit 8: add notes
+
+ todo.txt | 1 [32m+[m
+ 1 file changed, 1 insertion(+)
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ git bisect good[3Pcat todo.txt
+[?2004l
+
+Call mom
+Read book
+Plan weekend
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ git bie[Ksecrt [K[K[Kt goiiod[K[K[K[Kod
+[?2004l
+d22284fa26dd2559ec759d78b87573f03309de54 is the first bad commit
+[33mcommit d22284fa26dd2559ec759d78b87573f03309de54[m
+Author: devansh-hestabit <devansh.hestabit@gmail.com>
+Date:   Tue Jan 6 18:20:51 2026 +0530
+
+    Commit 8: add notes
+
+ todo.txt | 1 [32m+[m
+ 1 file changed, 1 insertion(+)
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ git bisect good[3Pcat todo.txt
+[?2004l
+
+Call mom
+Read book
+Plan weekend
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ cat todo.txtgit bisect good
+[?2004l
+d22284fa26dd2559ec759d78b87573f03309de54 is the first bad commit
+[33mcommit d22284fa26dd2559ec759d78b87573f03309de54[m
+Author: devansh-hestabit <devansh.hestabit@gmail.com>
+Date:   Tue Jan 6 18:20:51 2026 +0530
+
+    Commit 8: add notes
+
+ todo.txt | 1 [32m+[m
+ 1 file changed, 1 insertion(+)
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ git bisect good[3Pcat todo.txt
+[?2004l
+
+Call mom
+Read book
+Plan weekend
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ cat todo.txtgit bisect good
+[?2004l
+d22284fa26dd2559ec759d78b87573f03309de54 is the first bad commit
+[33mcommit d22284fa26dd2559ec759d78b87573f03309de54[m
+Author: devansh-hestabit <devansh.hestabit@gmail.com>
+Date:   Tue Jan 6 18:20:51 2026 +0530
+
+    Commit 8: add notes
+
+ todo.txt | 1 [32m+[m
+ 1 file changed, 1 insertion(+)
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ git bisect good[3Pcat todo.txt
+[?2004l
+
+Call mom
+Read book
+Plan weekend
+[?2004h]0;devansh@HESTABIT-362: ~/Desktop/todo-list-repo[01;32mdevansh@HESTABIT-362[00m:[01;34m~/Desktop/todo-list-repo[00m$ cat todo.txtgit bisect good
+[?2004l
+d22284fa26dd2559ec759d78b87573f03309de54 is the first bad commit
+[33mcommit d22284fa26dd2559ec759d78b87573f03309de54[m
+Author: devansh-hestabit <devansh.hestabit@gmail.com>
+Date:   Tue Jan 6 18:20:51 2026 +0530
+
+    Commit 8: add notes
+
+ todo.txt | 1 [32m+[m
+ 1 file changed, 1 insertion(+)
+
+exit
+
+[A
+[?2004l
+Previous HEAD position was 14b6d53 Commit 7: add weekend planning
+Switched to branch 'master'
+exit
+
+Script done on 2026-01-07 11:27:03+05:30 [COMMAND_EXIT_CODE="0"]
+
+
