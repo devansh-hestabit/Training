@@ -2,8 +2,8 @@ from dotenv import load_dotenv
 load_dotenv()
 import streamlit as st
 from pathlib import Path
-from src.deployment.app import ask_text, ask_image, ask_sql
-from src.memory.memory_store import (
+from Week7.Day5.src.deployment.app import ask_text, ask_image, ask_sql
+from Week7.Day5.src.memory.memory_store import (
     get_conversation,
     clear_conversation,
 )
