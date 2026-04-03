@@ -4,17 +4,17 @@ import re
 import os
 from datetime import datetime
 from autogen_agentchat.messages import TextMessage
-from nexus_ai.config import create_config
-from nexus_ai.agents.planner import create_planner_agent
-from nexus_ai.agents.researcher import create_researcher_agent
-from nexus_ai.agents.coder import create_coder_agent
-from nexus_ai.agents.analyst import create_analyst_agent
-from nexus_ai.agents.critic import create_critic_agent
-from nexus_ai.agents.optimizer import create_optimizer_agent
-from nexus_ai.agents.validator import create_validator_agent
-from nexus_ai.agents.reporter import create_reporter_agent
-from tools.code_executor import CodeExecutor
-from tools.db_agent import DBAgent
+from Week9.Day5.nexus_ai.config import create_config
+from Week9.Day5.nexus_ai.agents.planner import create_planner_agent
+from Week9.Day5.nexus_ai.agents.researcher import create_researcher_agent
+from Week9.Day5.nexus_ai.agents.coder import create_coder_agent
+from Week9.Day5.nexus_ai.agents.analyst import create_analyst_agent
+from Week9.Day5.nexus_ai.agents.critic import create_critic_agent
+from Week9.Day5.nexus_ai.agents.optimizer import create_optimizer_agent
+from Week9.Day5.nexus_ai.agents.validator import create_validator_agent
+from Week9.Day5.nexus_ai.agents.reporter import create_reporter_agent
+from Week9.Day3.tools.code_executor import CodeExecutor
+from Week9.Day3.tools.db_agent import DBAgent
 
 MAX_CONTEXT = 2000
 def log(message: str):

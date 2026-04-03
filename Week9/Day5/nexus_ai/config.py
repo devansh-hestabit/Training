@@ -1,4 +1,4 @@
-from config.llm_client import get_model_client
+from Week9.Day5.config.llm_client import get_model_client
 
 
 class NexusConfig:

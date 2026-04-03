@@ -1,10 +1,10 @@
 import asyncio
 from autogen_agentchat.messages import TextMessage
 from autogen_agentchat.agents import AssistantAgent
-from config.llm_client import get_model_client
-from memory.session_memory import create_session_memory
-from memory.vector_store import create_vector_store
-from memory.long_term import create_long_term_memory
+from Week9.Day5.config.llm_client import get_model_client
+from Week9.Day4.memory.session_memory import create_session_memory
+from Week9.Day4.memory.vector_store import create_vector_store
+from Week9.Day4.memory.long_term import create_long_term_memory
 
 def create_memory_agent(model_client):
 
