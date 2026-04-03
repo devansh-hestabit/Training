@@ -7,7 +7,7 @@ import pandas as pd
 from fastapi import FastAPI #for building the API 
 from pydantic import BaseModel  #for defining data models for request and response validation
 
-from src.features.build_features import create_new_features
+from Week6.Day5.src.features.build_features import create_new_features
 app = FastAPI(title="Income Prediction API")
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))

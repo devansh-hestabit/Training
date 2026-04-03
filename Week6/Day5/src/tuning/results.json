@@ -1,0 +1,17 @@
+{
+    "best_cv_f1": 0.683855137575644,
+    "best_params": {
+        "n_estimators": 222,
+        "max_depth": 7,
+        "learning_rate": 0.04260543078224206,
+        "subsample": 0.7835074278171213,
+        "colsample_bytree": 0.9364906313495736
+    },
+    "test_metrics_after_tuning": {
+        "accuracy": 0.848712690817954,
+        "precision": 0.7575757575757576,
+        "recall": 0.6266205704407951,
+        "f1": 0.6859035004730369,
+        "roc_auc": 0.914636452031115
+    }
+}
