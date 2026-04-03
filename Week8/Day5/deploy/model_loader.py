@@ -1,5 +1,5 @@
 from llama_cpp import Llama
-from config import MODEL_PATH, CONTEXT_SIZE, THREADS
+from Week8.Day5.deploy.config import MODEL_PATH, CONTEXT_SIZE, THREADS
 
 model = None
 

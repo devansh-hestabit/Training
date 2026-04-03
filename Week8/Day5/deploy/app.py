@@ -3,8 +3,8 @@ import logging
 import streamlit as st
 from typing import List, Dict
 
-from model_loader import load_model
-from config import MAX_TOKENS, TEMPERATURE, TOP_P, TOP_K
+from Week8.Day5.deploy.model_loader import load_model
+from Week8.Day5.deploy.config import MAX_TOKENS, TEMPERATURE, TOP_P, TOP_K
 
 logging.basicConfig(
     level=logging.INFO,

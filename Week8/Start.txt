@@ -1,4 +1,0 @@
-python -m utils.data_cleaner
-
-streamlit run deploy/app.py
-
